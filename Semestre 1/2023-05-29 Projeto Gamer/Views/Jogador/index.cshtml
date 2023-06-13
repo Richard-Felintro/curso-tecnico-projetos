@@ -1,0 +1,59 @@
+@********** + Página de cadastro de jogadores + **********@
+@model Jogador
+
+@{
+    ViewData["Title"] = "Jogadores";
+}
+
+<h1>Tela de Jogadores</h1>
+@if (ViewBag.UserName != null){
+<form method="post" action="@Url.Action("Cadastrar")" enctype="multipart/form-data">
+
+
+<label for="">Nome</label>
+<input name="JogadorNome" type="text" required>
+
+<label for="">Email</label>
+<input name="JogadorEmail" type="text" required>
+
+<label for="">Senha</label>
+<input name="JogadorSenha" type="text" required>
+
+<select name="Equipe" id="Equipe" required>
+    @foreach (Equipe equipe in ViewBag.Equipe)
+    {
+        <option value="@equipe.IdEquipe">@equipe.Nome</option>
+    }
+</select>
+
+<button type="submit" asp-action="Cadastrar">Cadastrar</button>
+</form>
+
+
+<table class="table table-striped table-responsive">
+    <thead>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Email</th>
+    </thead>
+    <tbody>
+        @foreach (var jogador in ViewBag.Jogador)
+        {
+            <tr>
+                <td>@jogador.IdJogador</td>
+                <td>@jogador.Nome</td>
+                <td>@jogador.Email</td>
+                
+                <td>
+                    <a asp-area="" asp-controller="jogador" asp-action="Editar"
+                        asp-route-id="@jogador.IdJogador">Editar</a>
+                </td>
+                <td>
+                    <a asp-area="" asp-controller="jogador" asp-action="Excluir"
+                        asp-route-id="@jogador.IdJogador">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+}
