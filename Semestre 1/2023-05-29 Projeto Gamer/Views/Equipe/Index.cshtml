@@ -1,5 +1,55 @@
+<link rel="stylesheet" href="~/css/equipe.css">
+<main>
+    <section class="container-grid cadastro-equipes">
 
-@********** + Página de cadastro de equipes + **********@
+@if (ViewBag.UserName != null){
+        <form class="frm-cad-equipe" method="post" action="@Url.Action("Cadastrar")">
+            <div class="cadequipe-titulo">
+                <h1>Cadastro de Equipes</h1>
+                <hr>
+            </div>
+
+            <input class="campo-entrada" type="text" name="Nome" placeholder="Digite o nome da sua equipe:" required>
+
+            <input type="file" name="Imagem">
+
+            <button type="submit">Cadastro</button>
+        </form>
+}
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Foto</th>
+                    <th>&spades;</th>
+                </tr>
+            </thead>
+                <tbody>
+        @foreach (var equipe in ViewBag.Equipe)
+        {
+            <tr>
+                <td>@equipe.IdEquipe</td>
+                <td>@equipe.Nome</td>
+                <td>
+                    <a asp-area="" asp-controller="equipe" asp-action="Editar" asp-route-id="@equipe.IdEquipe">
+                        <img  src="/img/Equipes/@equipe.Imagem" alt="Imagem da equipe @equipe.Nome" width="76px">
+                    </a>
+                </td>
+
+                <td>
+                    <a alt="" asp-area="" asp-controller="equipe" asp-action="Excluir" 
+                    asp-route-id="@equipe.IdEquipe"><img class="yellow-trash" src="/assets/trash.png">
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    </table>
+    </section>
+</main>
+
+@* ********* + Página de cadastro de equipes + *********
 @model Equipe
 
 @{
@@ -48,4 +98,4 @@
         }
     </tbody>
 </table>
-}
+} *@

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - projeto_gamer_fullstack</title>
     <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/header-footer.css">
 </head>
 <body>
             <!-- HEADER -->
@@ -45,12 +46,15 @@
                 <input type="checkbox" id="mostra-esconde-navmenu">
                 <div class="nav-bkg">
                     <nav>
-                        <a href="#">Início</a>
-                        <a href="#">Notícias</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Index">Início</a>
+                        <a href="~/#noticias">Notícias</a>
                         @if(ViewBag.UserName != null){
-                        <a asp-area="" asp-controller="Equipe" asp-action="Index" href="#">Equipes</a>
-                        <a asp-area="" asp-controller="Jogador" asp-action="Index" href="#">Jogadores</a>
+                        <a asp-area="" asp-controller="Equipe" asp-action="Index">Equipes</a>
+                        <a asp-area="" asp-controller="Jogador" asp-action="Index">Jogadores</a>
                         <a asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
+                        }
+                        else{
+                        <a asp-area="" asp-controller="Login" asp-action="Login">Login</a>
                         }
 
                         <a class="phone-box">
@@ -87,7 +91,7 @@
         </div>
     </header>
 
-        @RenderBody();
+        @RenderBody()
 
         @** FOOTER *@
     <footer>
@@ -121,11 +125,11 @@
 
                 <ul class="menu-footer">
                     <li class="menu-ftitem"><a href="#">Início</a></li>
-                    <li class="menu-ftitem"><a href="#">Notícias</a></li>
+                    <li class="menu-ftitem"><a href="~/#noticias">Notícias</a></li>
                     @if(ViewBag.UserName != null){
-                    <li class="menu-ftitem"><a asp-area="" asp-controller="Equipe" asp-action="Index" href="#">Equipes</a></li>
-                    <li class="menu-ftitem"><a asp-area="" asp-controller="Jogador" asp-action="Index" href="#">Jogadores</a></li>
-                    <li class="menu-ftitem"><a asp-area="" asp-controller="Login" asp-action="Logout" href="#">Logout</a></li>
+                    <li class="menu-ftitem"><a asp-area="" asp-controller="Equipe" asp-action="Index">Equipes</a></li>
+                    <li class="menu-ftitem"><a asp-area="" asp-controller="Jogador" asp-action="Index">Jogadores</a></li>
+                    <li class="menu-ftitem"><a asp-area="" asp-controller="Login" asp-action="Logout">Logout</a></li>
                     }
                     else{
                         <li class="menu-ftitem"><a asp-area="" asp-controller="Login" asp-action="Login">Login</a></li>
