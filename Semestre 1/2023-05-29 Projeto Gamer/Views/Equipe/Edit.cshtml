@@ -1,18 +1,26 @@
-@model Equipe
+<link rel="stylesheet" href="~/css/equipe.css">
+<main>
+    <section class="container-grid cadastro-equipes">
 
-@{
-    ViewData["Title"] = "Editando equipe...";
-}
+        @if (ViewBag.UserName != null)
+        {
+            <form class="frm-cad-equipe" method="post"
+                action="@Url.Action("Atualizar")" enctype="multipart/form-data">
+                <div class="cadequipe-titulo">
+                    <h1>Edição de Equipe</h1>
+                    <hr>
+                </div>
 
-<h2>Edição de Equipes</h2>
-<form method="post" action="@Url.Action("Atualizar")" enctype="multipart/form-data">
+                <input type="hidden" name="IdEquipe" value="@ViewBag.Equipe.IdEquipe">
 
-    <input type="hidden" name="IdEquipe" value="@ViewBag.Equipe.IdEquipe">
-    <label for="">Nome</label>
-    <input type="text" name="Nome" value="@ViewBag.Equipe.Nome">
+                <input class="campo-entrada" type="text" name="Nome"
+                placeholder="Digite o nome da sua equipe:">
 
-    <label for="">Imagem</label>
-    <input type="file" name="Imagem" value="@ViewBag.Equipe.Nome">
+                <label class="foto" for="foto-file"></label>
+                <input type="file" name="Imagem" id="foto-file">
 
-<button type="submit">Atualizar</button>
-</form>
+                <button type="submit">Editar</button>
+            </form>
+        }
+    </section>
+</main>

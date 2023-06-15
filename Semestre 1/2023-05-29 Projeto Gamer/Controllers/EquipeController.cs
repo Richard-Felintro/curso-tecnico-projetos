@@ -53,13 +53,14 @@ namespace projeto_gamer_fullstack.Controllers
                     {
                         file.CopyTo(stream);
                     }
-
                     novaEquipe.Imagem = file.FileName;
                 }
+                
                 else
                 {
                     novaEquipe.Imagem = "default.png";
                 }
+                
                 c.Equipe.Add(novaEquipe);
                 c.SaveChanges();
             }
@@ -95,8 +96,6 @@ namespace projeto_gamer_fullstack.Controllers
             Equipe novaEquipe = new Equipe();
             Equipe equipe = c.Equipe.First(x => x.IdEquipe == e.IdEquipe);
 
-            novaEquipe.Nome = e.Nome;
-
             if (form.Files.Count > 0)
             {
                 var file = form.Files[0];
@@ -116,9 +115,9 @@ namespace projeto_gamer_fullstack.Controllers
                 equipe.Imagem = novaEquipe.Imagem;
             }
 
-            string novoNome = form["Nome"].ToString();
+            novaEquipe.Nome = form["Nome"].ToString();
 
-            if (string.IsNullOrEmpty(novoNome))
+            if (!string.IsNullOrEmpty(novaEquipe.Nome))
             {
                 equipe.Nome = novaEquipe.Nome;
             }

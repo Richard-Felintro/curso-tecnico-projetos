@@ -1,4 +1,11 @@
+@model Equipe
+
+@{
+    ViewData["Title"] = "Equipe";
+}
+
 <link rel="stylesheet" href="~/css/equipe.css">
+
 <main>
     <section class="container-grid cadastro-equipes">
 
@@ -11,7 +18,7 @@
 
             <input class="campo-entrada" type="text" name="Nome" placeholder="Digite o nome da sua equipe:" required>
 
-            <input type="file" name="Imagem">
+            <input type="file" id="foto-file" name="Imagem"> 
 
             <button type="submit">Cadastro</button>
         </form>

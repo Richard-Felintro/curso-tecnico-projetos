@@ -1,5 +1,5 @@
 main {
-    height: 1231px;
+    min-height: 1231px;
     background-image: url(../images/background-equipes-mobile.png);
     background-size: contain;
     background-position: top;
