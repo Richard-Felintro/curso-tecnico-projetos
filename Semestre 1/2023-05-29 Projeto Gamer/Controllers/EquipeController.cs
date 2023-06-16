@@ -30,40 +30,51 @@ namespace projeto_gamer_fullstack.Controllers
             return View(); //* Esta "mochila" pode ser usada no View de equipe.
         }
 
+
         [Route("Cadastrar")]
         public IActionResult Cadastrar(IFormCollection form)
         {
             Equipe novaEquipe = new Equipe();
-            if (form["Nome"].ToString != null)
+
+            novaEquipe.Nome = form["Nome"].ToString();
+
+            // vem como string, o que precisamos é imagem
+            // novaEquipe.Imagem = form["Imagem"].ToString();
+        Console.WriteLine($"Anexo : {form.Files.Count}");
+            // lógica do upload de imagem
+            if (form.Files.Count > 0)
             {
-                novaEquipe.Nome = form["Nome"].ToString();
+                var file = form.Files[0];
+                // variavel criando combinações de caminhos
+                var folder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/Equipe");
 
-                if (form.Files.Count > 0)
+                if (!Directory.Exists(folder))
                 {
-                    var file = form.Files[0];
-                    var folder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img/Equipes");
-                    if (!Directory.Exists(folder))
-                    {
-                        Directory.CreateDirectory(folder);
-                    }
-
-                    var path = Path.Combine(folder, file.FileName);
-
-                    using (var stream = new FileStream(path, FileMode.Create))
-                    {
-                        file.CopyTo(stream);
-                    }
-                    novaEquipe.Imagem = file.FileName;
+                    Directory.CreateDirectory(folder);
                 }
-                
-                else
+
+                var path = Path.Combine(folder, file.FileName);
+
+                // using é o bloco de codigo onde após de terminar ele se encerra
+                using (var stream = new FileStream(path, FileMode.Create))
                 {
-                    novaEquipe.Imagem = "default.png";
+                    file.CopyTo(stream);
                 }
-                
-                c.Equipe.Add(novaEquipe);
-                c.SaveChanges();
+
+                novaEquipe.Imagem = file.FileName;
+
             }
+            else
+            {
+                novaEquipe.Imagem = "default.png";
+            }
+            // fima da lógica de upload
+
+            c.Equipe.Add(novaEquipe);
+            // c.Add(novaEquipe) - Isso também funciona
+
+            c.SaveChanges();
+
             return LocalRedirect("~/Equipe/Listar");
         }
 

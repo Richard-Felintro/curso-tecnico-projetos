@@ -71,31 +71,28 @@ namespace projeto_gamer_fullstack.Controllers
         public IActionResult Atualizar(IFormCollection form)
         {
             Jogador novoJogador = new Jogador();
-
             novoJogador.IdJogador = int.Parse(form["IdJogador"].ToString());
+            Jogador jogadorSelecionado = c.Jogador.First(x => x.IdJogador == novoJogador.IdJogador);
 
             if (!string.IsNullOrEmpty(form["JogadorNome"].ToString()))
             {
                 novoJogador.Nome = form["JogadorNome"].ToString();
+                jogadorSelecionado.Nome = novoJogador.Nome;
             }
 
             if (!string.IsNullOrEmpty(form["JogadorEmail"].ToString()))
             {
                 novoJogador.Email = form["JogadorEmail"].ToString();
+                jogadorSelecionado.Email = novoJogador.Email;
             }
 
             if (string.IsNullOrEmpty(form["JogadorSenha"].ToString()))
             {
                 novoJogador.Senha = form["JogadorSenha"].ToString();
+                jogadorSelecionado.Senha = novoJogador.Senha;
             }
 
             novoJogador.IdEquipe = int.Parse(form["Equipe"]);
-            
-            Jogador jogadorSelecionado = c.Jogador.First(x => x.IdJogador == novoJogador.IdJogador);
-
-            jogadorSelecionado.Nome = novoJogador.Nome;
-            jogadorSelecionado.Email = novoJogador.Email;
-            jogadorSelecionado.Senha = novoJogador.Senha;
             jogadorSelecionado.IdEquipe = novoJogador.IdEquipe;
             jogadorSelecionado.Equipe = c.Equipe.First(x => x.IdEquipe == jogadorSelecionado.IdEquipe);
 

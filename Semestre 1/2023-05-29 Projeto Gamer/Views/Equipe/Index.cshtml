@@ -10,15 +10,18 @@
     <section class="container-grid cadastro-equipes">
 
 @if (ViewBag.UserName != null){
-        <form class="frm-cad-equipe" method="post" action="@Url.Action("Cadastrar")">
+        <form class="frm-cad-equipe" method="post" action="@Url.Action("Cadastrar")" enctype="multipart/form-data">
             <div class="cadequipe-titulo">
                 <h1>Cadastro de Equipes</h1>
                 <hr>
             </div>
 
-            <input class="campo-entrada" type="text" name="Nome" placeholder="Digite o nome da sua equipe:" required>
-
-            <input type="file" id="foto-file" name="Imagem"> 
+                @* <input class="campo-entrada" type="number" id="idEquipe" placeholder="Digite o Id da sua equipe:"> *@
+                <input type="text" name="Nome" required class="campo-entrada" placeholder="Digite o nome da sua equipe:">
+                <label class="foto" for="foto-file">
+                    Nenuma imagem selecionada...
+                    <input type="File" name="Imagem" id="foto-file">
+                </label>
 
             <button type="submit">Cadastro</button>
         </form>
@@ -39,12 +42,13 @@
                 <td>@equipe.IdEquipe</td>
                 <td>@equipe.Nome</td>
                 <td>
-                    <a asp-area="" asp-controller="equipe" asp-action="Editar" asp-route-id="@equipe.IdEquipe">
-                        <img  src="/img/Equipes/@equipe.Imagem" alt="Imagem da equipe @equipe.Nome" width="76px">
-                    </a>
+                    <img  src="/img/Equipes/@equipe.Imagem" alt="Imagem da equipe @equipe.Nome" width="76px">
                 </td>
 
                 <td>
+                    <a asp-area="" asp-controller="equipe" asp-action="Editar" asp-route-id="@equipe.IdEquipe" style="color: gold;text-decoration: none;">
+                        Editar
+                    </a>
                     <a alt="" asp-area="" asp-controller="equipe" asp-action="Excluir" 
                     asp-route-id="@equipe.IdEquipe"><img class="yellow-trash" src="/assets/trash.png">
                     </a>
