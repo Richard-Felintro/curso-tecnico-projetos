@@ -1,4 +1,4 @@
-/****************** MOBILE FIRST ******************/
+    /****************** MOBILE FIRST ******************/
 
 /********************* Header *********************/
 header {
@@ -227,8 +227,8 @@ footer .card-ftitem-box hr {
 
 footer .card-ftitem-box p {
     margin-bottom: 20px;
-    font-family: Inter-Thin;
-    text-align: justify;
+    font-family: Quicksand-Regular;
+    text-align: justify;    
 }
 
 footer .card-ftitem-box .social-fticons {
@@ -291,7 +291,7 @@ footer p.contact-title {
 
 footer p.contact-text {
     margin-bottom: 10px;
-    font-family: Quicksand-Regular;
+        font-family: Quicksand-Regular;
 }
 
 footer .frm-news {
