@@ -41,7 +41,3 @@ LEFT JOIN Especialidade ON (JoinEspecialidade.IdMedico = Medico.IdMedico)
 AND (Especialidade.IdEspecialidade = JoinEspecialidade.IdEspecialidade)
 
 WHERE Consulta.IdConsulta = 2
-
-SELECT
-CONVERT(TIME(0), Clinica.HorarioAbertura)
-FROM Clinica
