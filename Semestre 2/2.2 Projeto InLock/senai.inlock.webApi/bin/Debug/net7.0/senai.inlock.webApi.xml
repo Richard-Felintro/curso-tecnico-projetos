@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>senai.inlock.webApi</name>
+    </assembly>
+    <members>
+        <member name="M:senai.inlock.webApi.Controllers.JogoController.Post(senai.inlock.webApi.Domains.JogoDomain)">
+            <summary>
+            Cadastrar um novo jogo. Somente para Administradores.
+            </summary>
+            <param name="Jogo"></param>
+        </member>
+        <member name="M:senai.inlock.webApi.Controllers.JogoController.GetAll">
+            <summary>
+            Exibe todos os jogos cadastrados e seus respectivos estúdios.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:senai.inlock.webApi.Controllers.UsuarioController.Login(senai.inlock.webApi.Domains.UsuarioDomain)">
+            <summary>
+            Faz login de uma conta e gerar seu token.
+            </summary>
+            <param name="usuarioLogin"></param>
+            <returns></returns>
+        </member>
+        <member name="T:senai.inlock.webApi.Domains.EstudioDomain">
+            <summary>
+            Classe representante da entidade Estudio
+            </summary>
+        </member>
+        <member name="T:senai.inlock.webApi.Domains.JogoDomain">
+            <summary>
+            Classe determinante da entidade Jogo
+            </summary>
+        </member>
+        <member name="T:senai.inlock.webApi.Domains.TipoUsuarioDomain">
+            <summary>
+            Classe responsável pela entidade TipoUsuario
+            </summary>
+        </member>
+        <member name="T:senai.inlock.webApi.Domains.UsuarioDomain">
+            <summary>
+            Classe representando da entidade Usuario.
+            </summary>
+        </member>
+        <member name="T:senai.inlock.webApi.Interfaces.IEstudioRepository">
+            <summary>
+            Interface responsável pelo repositório de estúdios.
+            </summary>
+        </member>
+        <member name="M:senai.inlock.webApi.Interfaces.IEstudioRepository.ListarTodos">
+            <summary>
+            Exibe todos os estúdios cadastrados.
+            </summary>
+            <returns>Lista incluindo todos os estúdios cadastrados.</returns>
+        </member>
+        <member name="M:senai.inlock.webApi.Interfaces.IEstudioRepository.ListarPorId(System.Int32)">
+            <summary>
+            Exibe um estúdio cadastrado; utiliza o IdEstudio para selecioná-lo.
+            </summary>
+            <param name="id"></param>
+            <returns>O EstudioDomain do estúdio correspondente ao id.</returns>
+        </member>
+        <member name="T:senai.inlock.webApi.Interfaces.IJogoRepository">
+            <summary>
+            Interface responsável pelo repositório de jogos.
+            </summary>
+        </member>
+        <member name="M:senai.inlock.webApi.Interfaces.IJogoRepository.Cadastrar(senai.inlock.webApi.Domains.JogoDomain)">
+            <summary>
+            Cadastra um novo jogo; Para administradores apenas.
+            </summary>
+            <param name="novoJogo"></param>
+        </member>
+        <member name="M:senai.inlock.webApi.Interfaces.IJogoRepository.ListarTodos">
+            <summary>
+            Exibe todos os jogos cadastrados e seus estúdios.
+            </summary>
+            <returns>Lista incluindo todos os jogos cadastrados.</returns>
+        </member>
+        <member name="M:senai.inlock.webApi.Interfaces.IJogoRepository.ListarPorId(System.Int32)">
+            <summary>
+            Exibe um jogo cadastrado e seu estúdio; utiliza o IdJogo para selecioná-lo.
+            </summary>
+            <param name="id"></param>
+            <returns>O JogoDomain do jogo correspondente.</returns>
+        </member>
+        <member name="T:senai.inlock.webApi.Repositories.EstudioRepository">
+            <summary>
+            Repositório responsável pela classe Estudio
+            </summary>
+        </member>
+        <member name="T:senai.inlock.webApi.Repositories.JogoRepository">
+            <summary>
+            Repositório responsável pela classe Jogo
+            </summary>
+        </member>
+        <member name="M:senai.inlock.webApi.Repositories.JogoRepository.Cadastrar(senai.inlock.webApi.Domains.JogoDomain)">
+            <summary>
+            Método que cadastra um novo jogo, utilizando parametros um JogoDomain
+            </summary>
+            <param name="novoJogo"></param>
+        </member>
+        <member name="M:senai.inlock.webApi.Repositories.UsuarioRepository.Login(System.String,System.String)">
+            <summary>
+            Envia o email e a senha de um usuário e os compara as contas existentes.
+            </summary>
+            <param name="email"></param>
+            <param name="password"></param>
+            <returns>Uma conta que corresponde com as informações inviadas.</returns>
+        </member>
+    </members>
+</doc>
