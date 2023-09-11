@@ -10,5 +10,8 @@ namespace senai.inlock.webApi.Domains
         public int IdEstudio { get; set; }
         [Required (ErrorMessage = "Nome de estúdio não determinado.")]
         public string? Nome { get; set; }
+        //lista dos jogos deste estúdio
+        public List<JogoDomain>? Jogos { get; set; }
+
     }
 }

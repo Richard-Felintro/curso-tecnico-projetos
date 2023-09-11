@@ -22,7 +22,7 @@ namespace senai.inlock.webApi.Controllers
             _estudioRepository = new EstudioRepository();
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public IActionResult GetAll()
         {

@@ -77,13 +77,14 @@ namespace senai.inlock.webApi.Repositories
                             Descricao = Convert.ToString(Leitor[3]),
                             DataLancamento = Convert.ToDateTime(Leitor[4]),
                             Valor = Convert.ToDecimal(Leitor[5]),
-                            // Novo estúdio é criado para ser exibido
-                            Estudio = new EstudioDomain()
-                            {
-                                // Atributos do estúdio
-                                IdEstudio = Convert.ToInt32(Leitor[1]),
-                                Nome = Convert.ToString(Leitor[6]),
-                            }
+                            Estudio = Convert.ToString(Leitor[6])
+                        };
+                        // Novo estúdio é criado para ser exibido
+                        EstudioDomain Estudio = new EstudioDomain()
+                        {
+                            // Atributos do estúdio
+                            IdEstudio = Convert.ToInt32(Leitor[1]),
+                            Nome = Convert.ToString(Leitor[6]),
                         };
                         // Adiciona o jogo a lista em cada loop
                         ListaJogos.Add(jogo);

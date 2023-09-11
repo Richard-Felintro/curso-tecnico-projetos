@@ -9,7 +9,7 @@ namespace senai.inlock.webApi.Domains
     {
         public int IdJogo { get; set; }
         public int IdEstudio { get; set; }
-        public EstudioDomain? Estudio { get; set; }
+        public string? Estudio { get; set; }
         [Required(ErrorMessage = "Nome de jogo não determinado.")]
         public string? Nome { get; set; }
         [Required(ErrorMessage = "Descrição de jogo não determinada.")]
