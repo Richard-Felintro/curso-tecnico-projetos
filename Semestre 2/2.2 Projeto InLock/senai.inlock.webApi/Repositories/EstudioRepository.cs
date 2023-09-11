@@ -66,7 +66,7 @@ namespace senai.inlock.webApi.Repositories
                         foreach (EstudioDomain estudio in ListaEstudios)
                         {
                             // Verifica se o estúdio na lista tem o mesmo Id do estúdio do jogo
-                            if (Convert.ToInt32(Leitor2[1]) == estudio.IdEstudio)
+                            if (Convert.ToInt32(Leitor2[0]) == estudio.IdEstudio)
                             {
                                 JogoDomain jogo = new JogoDomain()
                                 {
