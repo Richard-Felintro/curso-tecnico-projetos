@@ -31,12 +31,13 @@ namespace webapi.inlock_codefirst.Controllers
             }
         }
 
-        [HttpGet]
-        public IActionResult GetByEmailAndPassword() 
+        [HttpDelete("Usuario")]
+        public IActionResult GetUser(Usuario usuario)
         {
             try
             {
-
+                UsuarioRepository.BuscarUsuario(usuario.Email, usuario.Senha);
+                return Ok(usuario);
             }
             catch (Exception erro)
             {

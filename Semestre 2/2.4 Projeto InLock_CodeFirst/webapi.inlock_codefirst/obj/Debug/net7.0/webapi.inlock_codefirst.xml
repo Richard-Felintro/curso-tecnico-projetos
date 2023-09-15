@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>webapi.inlock_codefirst</name>
+    </assembly>
+    <members>
+        <member name="P:webapi.inlock_codefirst.Contexts.InLockContext.TipoUsuario">
+            <summary>
+            Definição das entidades do banco de dados
+            </summary>
+        </member>
+        <member name="T:webapi.inlock_codefirst.Migrations.DB">
+            <inheritdoc />
+        </member>
+        <member name="M:webapi.inlock_codefirst.Migrations.DB.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:webapi.inlock_codefirst.Migrations.DB.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:webapi.inlock_codefirst.Migrations.DB.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:webapi.inlock_codefirst.Utils.Criptografia.GerarHash(System.String)">
+            <summary>
+            Gera uma hash a partir da senha
+            </summary>
+            <param name="senha">Senha a ser criptografada</param>
+            <returns>Senha criptografada</returns>
+        </member>
+        <member name="M:webapi.inlock_codefirst.Utils.Criptografia.CompararHash(System.String,System.String)">
+            <summary>
+            Verifica se a hash informada pelo usuário coincide com a hash do banco
+            </summary>
+            <param name="senhaForm"></param>
+            <param name="senhaBanco"></param>
+            <returns>True se coincidir ou False se não</returns>
+        </member>
+    </members>
+</doc>

@@ -1,4 +1,5 @@
-﻿using webapi.inlock_codefirst.Contexts;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using webapi.inlock_codefirst.Contexts;
 using webapi.inlock_codefirst.Domains;
 using webapi.inlock_codefirst.Interfaces;
 using webapi.inlock_codefirst.Utils;
@@ -15,27 +16,28 @@ namespace webapi.inlock_codefirst.Repositories
 
         public Usuario BuscarUsuario(string email, string senha)
         {
+
             try
             {
-                var usuarioBuscado = ctx.Usuario.FirstOrDefault(u => u.Email == email);
+                Usuario? usuarioBuscado = ctx.Usuario.First(u => u.Email == email);
 
                 if (usuarioBuscado != null)
                 {
-                    bool Achado = Criptografia.CompararHash(senha, usuarioBuscado.Senha);
-                    if (Achado)
+                    bool hash = Criptografia.CompararHash(senha, usuarioBuscado.Senha!);
+
+                    if (hash)
                     {
                         return usuarioBuscado;
                     }
                 }
-            return null;
-        }
-            
+                return null;
+            }
             catch (Exception)
             {
-
-                throw;
+                return null;
             }
         }
+
 
         public void CadastrarUsuario(Usuario usuario)
         {

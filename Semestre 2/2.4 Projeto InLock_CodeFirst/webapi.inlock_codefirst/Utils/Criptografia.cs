@@ -20,7 +20,7 @@
         /// <returns>True se coincidir ou False se não</returns>
         public static bool CompararHash(string senhaForm, string senhaBanco)
         {
-            return BCrypt.Net.BCrypt.Verify(senhaBanco, senhaForm);
+            return BCrypt.Net.BCrypt.Verify(senhaForm, senhaBanco);
         }
     }
 }
