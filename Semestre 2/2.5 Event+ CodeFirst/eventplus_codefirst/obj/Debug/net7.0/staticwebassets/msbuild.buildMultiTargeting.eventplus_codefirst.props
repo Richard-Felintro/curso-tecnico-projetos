@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\eventplus_codefirst.props" />
+</Project>
