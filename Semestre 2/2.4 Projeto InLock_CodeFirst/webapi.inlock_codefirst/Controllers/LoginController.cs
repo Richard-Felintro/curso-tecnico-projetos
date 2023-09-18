@@ -56,7 +56,7 @@ namespace webapi.inlock_codefirst.Controllers
                     // Emissor do token
                     issuer: "webapi.inlock_codefirst",
                     // Destinatário
-                    audience: "webapi.inlock_codefirsts",
+                    audience: "webapi.inlock_codefirst",
 
                     // Dados definidos nas Claims
                     claims: claims,
