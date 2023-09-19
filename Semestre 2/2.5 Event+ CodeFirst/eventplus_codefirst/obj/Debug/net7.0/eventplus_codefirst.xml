@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>eventplus_codefirst</name>
+    </assembly>
+    <members>
+        <member name="T:eventplus_codefirst.Migrations.BDv1">
+            <inheritdoc />
+        </member>
+        <member name="M:eventplus_codefirst.Migrations.BDv1.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:eventplus_codefirst.Migrations.BDv1.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:eventplus_codefirst.Migrations.BDv1.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:eventplus_codefirst.Utils.Criptografia.GerarHash(System.String)">
+            <summary>
+            Gera uma hash a partir da senha
+            </summary>
+            <param name="senha">Senha a ser criptografada</param>
+            <returns>Senha criptografada</returns>
+        </member>
+        <member name="M:eventplus_codefirst.Utils.Criptografia.CompararHash(System.String,System.String)">
+            <summary>
+            Verifica se a hash informada pelo usuário coincide com a hash do banco
+            </summary>
+            <param name="senhaForm"></param>
+            <param name="senhaBanco"></param>
+            <returns>True se coincidir ou False se não</returns>
+        </member>
+    </members>
+</doc>
