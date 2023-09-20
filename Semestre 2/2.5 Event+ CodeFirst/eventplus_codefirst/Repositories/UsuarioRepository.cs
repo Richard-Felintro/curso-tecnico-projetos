@@ -10,7 +10,7 @@ namespace eventplus_codefirst.Repositories
         private readonly EventContext _eventContext;
         public UsuarioRepository()
         {
-            _eventContext = new EventContext();
+            _eventContext = new();
         }
         public Usuario BuscarPorEmailESenha(string email, string senha)
         {

@@ -24,7 +24,7 @@ namespace eventplus_codefirst.Controllers
             try
             {
                 _UsuarioRepository.Cadastrar(usuario);
-                return StatusCode(201);
+                return Created("Usuário deletado com sucesso.",usuario);
             }
             catch (Exception erro)
             {
@@ -40,7 +40,7 @@ namespace eventplus_codefirst.Controllers
             try
             {
                 _UsuarioRepository.Deletar(id);
-                return StatusCode(200);
+                return Ok("Usuário deletado com sucesso.");
             }
             catch (Exception erro)
             {

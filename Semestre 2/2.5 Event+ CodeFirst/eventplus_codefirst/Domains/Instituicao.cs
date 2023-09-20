@@ -24,5 +24,8 @@ namespace eventplus_codefirst.Domains
         [Column(TypeName = "VARCHAR(256)")]
         [Required(ErrorMessage = "Nome fantasia de instituição não determinado.")]
         public string? NomeFantasia { get; set; }
+
+        // Lista de eventos Associados a esta instituição
+        public virtual ICollection<Evento> Eventos { get; set; } = new List<Evento>();
     }
 }
