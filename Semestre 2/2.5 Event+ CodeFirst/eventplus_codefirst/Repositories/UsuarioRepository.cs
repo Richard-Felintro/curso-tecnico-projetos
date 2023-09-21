@@ -12,6 +12,29 @@ namespace eventplus_codefirst.Repositories
         {
             _eventContext = new();
         }
+
+        public Usuario BuscarIdEAtualizar(Guid id, Usuario usuario)
+        {
+            try
+            {
+                Usuario editado = BuscarPorId(id);
+                if (editado != null)
+                {
+                    editado.Nome = usuario.Nome;
+                    editado.Email = usuario.Email;
+                    editado.Senha = Criptografia.GerarHash(usuario.Senha);
+                    _eventContext.Update(editado);
+                    _eventContext.SaveChanges();
+                    return editado;
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         public Usuario BuscarPorEmailESenha(string email, string senha)
         {
             try
@@ -78,6 +101,11 @@ namespace eventplus_codefirst.Repositories
             {
                 throw;
             }
+        }
+
+        public List<Usuario> ListarTodos()
+        {
+            return _eventContext.Usuario.ToList();
         }
     }
 }

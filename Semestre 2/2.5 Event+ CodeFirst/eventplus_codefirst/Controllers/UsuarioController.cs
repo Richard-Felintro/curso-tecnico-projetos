@@ -47,5 +47,62 @@ namespace eventplus_codefirst.Controllers
                 return BadRequest(erro.Message);
             }
         }
+
+        /// <summary>
+        /// Busca um Usuario que coincide com um IdUsuario e o atualiza com os dados da Usuario informado
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="Usuario"></param>
+        /// <returns>Usuario editado</returns>
+        [Authorize]
+        [HttpPatch("{id}")]
+        public IActionResult UpdateById(Guid id, Usuario Usuario)
+        {
+            try
+            {
+                return Ok(_UsuarioRepository.BuscarIdEAtualizar(id, Usuario));
+            }
+            catch (Exception erro)
+            {
+                return BadRequest(erro.Message);
+            }
+        }
+
+        /// <summary>
+        /// Lista todos os Usuarios
+        /// </summary>
+        /// <returns>Lista com todos os Usuarios</returns>
+        [Authorize]
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            try
+            {
+                return Ok(_UsuarioRepository.ListarTodos());
+            }
+            catch (Exception erro)
+            {
+                return BadRequest(erro.Message);
+            }
+        }
+
+        /// <summary>
+        /// Buscar um Usuario que coincide com um IdUsuario informado
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Usuario selecionado</returns>
+        [Authorize]
+        [HttpGet("{id}")]
+        public IActionResult GetById(Guid id)
+        {
+            try
+            {
+                return Ok(_UsuarioRepository.BuscarPorId(id));
+            }
+            catch (Exception erro)
+            {
+                return BadRequest(erro.Message);
+            }
+        }
     }
 }

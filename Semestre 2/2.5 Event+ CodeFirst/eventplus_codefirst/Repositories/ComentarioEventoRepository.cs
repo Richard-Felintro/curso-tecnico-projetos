@@ -4,27 +4,29 @@ using eventplus_codefirst.Interfaces;
 
 namespace eventplus_codefirst.Repositories
 {
-    public class PresencaEventoRepository : IPresencaEventoRepository
+    public class ComentarioEventoRepository : IComentarioEventoRepository
     {
         private readonly EventContext _eventContext;
-        public PresencaEventoRepository()
+        public ComentarioEventoRepository()
         {
             _eventContext = new();
         }
 
-        public PresencaEvento BuscarIdEAtualizar(Guid id, PresencaEvento PresencaEvento)
+        []
+        public void AlterarExibicao(Guid id)
         {
             try
             {
-                PresencaEvento editado = BuscarPorId(id);
-                if (editado != null)
+                ComentarioEvento editado = BuscarPorId(id);
+                if (editado.Exibe == true)
                 {
-                    editado.Situacao = PresencaEvento.Situacao;
+                    editado.Exibe = false;
                     _eventContext.Update(editado);
                     _eventContext.SaveChanges();
-                    return editado;
+                    return;
                 }
-                return null;
+                editado.Exibe = true;
+                return;
             }
             catch (Exception)
             {
@@ -32,12 +34,12 @@ namespace eventplus_codefirst.Repositories
             }
         }
 
-        public PresencaEvento BuscarPorId(Guid id)
+        public ComentarioEvento BuscarPorId(Guid id)
         {
             try
             {
-                PresencaEvento PresencaEvento = _eventContext.PresencaEvento.First(x => x.IdPresencaEvento == id);
-                return PresencaEvento;
+                ComentarioEvento ComentarioEvento = _eventContext.ComentarioEvento.First(x => x.IdComentarioEvento == id);
+                return ComentarioEvento;
             }
             catch (Exception)
             {
@@ -45,9 +47,9 @@ namespace eventplus_codefirst.Repositories
             }
         }
 
-        public void Cadastrar(PresencaEvento PresencaEvento)
+        public void Cadastrar(ComentarioEvento ComentarioEvento)
         {
-            _eventContext.PresencaEvento.Add(PresencaEvento);
+            _eventContext.ComentarioEvento.Add(ComentarioEvento);
             _eventContext.SaveChanges();
         }
 
@@ -64,14 +66,9 @@ namespace eventplus_codefirst.Repositories
             }
         }
 
-        public List<PresencaEvento> ListarMinhas(Guid id)
+        public List<ComentarioEvento> ListarTodos()
         {
-            return _eventContext.PresencaEvento.Where(x => x.Usuario.IdUsuario == id).ToList();
-        }
-
-        public List<PresencaEvento> ListarTodos()
-        {
-            return _eventContext.PresencaEvento.ToList();
+            return _eventContext.ComentarioEvento.ToList();
         }
     }
 }

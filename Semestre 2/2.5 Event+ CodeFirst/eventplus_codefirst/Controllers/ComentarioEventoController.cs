@@ -1,37 +1,35 @@
 ﻿using eventplus_codefirst.Domains;
-using eventplus_codefirst.Interfaces;
 using eventplus_codefirst.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 
 namespace eventplus_codefirst.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class EventoController : ControllerBase
+    public class ComentarioEventoController : ControllerBase
     {
-        private EventoRepository _EventoRepository { get; set; }
-        public EventoController()
+        private ComentarioEventoRepository _ComentarioEventoRepository { get; set; }
+        public ComentarioEventoController()
         {
-            _EventoRepository = new EventoRepository();
+            _ComentarioEventoRepository = new ();
         }
 
         /// <summary>
-        /// Cadastra um novo Evento
+        /// Cadastra um novo ComentarioEvento
         /// </summary>
-        /// <param name="eventoCadastrado"></param>
-        /// <returns>O evento criado</returns>
-        [Authorize(Roles = "C2100659-A7D7-4A0B-A513-B5D3FE4E416D")]
+        /// <param name="ComentarioEventoCadastrado"></param>
+        /// <returns>O comentário criado</returns>
+        [Authorize]
         [HttpPost]
-        public IActionResult Post(Evento eventoCadastrado)
+        public IActionResult Post(ComentarioEvento ComentarioEventoCadastrado)
         {
             try
             {
-                _EventoRepository.Cadastrar(eventoCadastrado);
-                return Created("Evento cadastrado com sucesso.", eventoCadastrado);
+                _ComentarioEventoRepository.Cadastrar(ComentarioEventoCadastrado);
+                return Created("ComentarioEvento cadastrado com sucesso.", ComentarioEventoCadastrado);
             }
             catch (Exception erro)
             {
@@ -40,7 +38,7 @@ namespace eventplus_codefirst.Controllers
         }
 
         /// <summary>
-        /// Busca um Evento que coincide com um IdEvento informado e o deleta
+        /// Busca um ComentarioEvento que coincide com um IdComentarioEvento informado e o deleta
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -50,8 +48,8 @@ namespace eventplus_codefirst.Controllers
         {
             try
             {
-                _EventoRepository.Deletar(id);
-                return Ok("Evento deletado com sucesso.");
+                _ComentarioEventoRepository.Deletar(id);
+                return Ok("ComentarioEvento deletado com sucesso.");
             }
             catch (Exception erro)
             {
@@ -60,18 +58,18 @@ namespace eventplus_codefirst.Controllers
         }
 
         /// <summary>
-        /// Busca um Evento que coincide com um IdEvento e o atualiza com os dados da Evento informado
+        /// Busca um ComentarioEvento que coincide com um IdComentarioEvento e altera seu estado de exibição
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="evento"></param>
-        /// <returns>Evento editado</returns>
+        /// <returns></returns>
         [Authorize(Roles = "C2100659-A7D7-4A0B-A513-B5D3FE4E416D")]
         [HttpPatch("{id}")]
-        public IActionResult UpdateById(Guid id, Evento evento)
+        public IActionResult UpdateById(Guid id)
         {
             try
             {
-                return Ok(_EventoRepository.BuscarIdEAtualizar(id, evento));
+                _ComentarioEventoRepository.AlterarExibicao(id);
+                return Ok();
             }
             catch (Exception erro)
             {
@@ -80,16 +78,16 @@ namespace eventplus_codefirst.Controllers
         }
 
         /// <summary>
-        /// Lista todos os eventos
+        /// Lista todos os ComentarioEventos
         /// </summary>
-        /// <returns>Lista com todos os eventos</returns>
-        [Authorize]
+        /// <returns>Lista com todos os ComentarioEventos</returns>
+        [Authorize(Roles = "C2100659-A7D7-4A0B-A513-B5D3FE4E416D")]
         [HttpGet]
         public IActionResult GetAll()
         {
             try
             {
-                return Ok(_EventoRepository.ListarTodos());
+                return Ok(_ComentarioEventoRepository.ListarTodos());
             }
             catch (Exception erro)
             {
@@ -98,17 +96,17 @@ namespace eventplus_codefirst.Controllers
         }
 
         /// <summary>
-        /// Buscar um Evento que coincide com um IdEvento informado
+        /// Buscar um ComentarioEvento que coincide com um IdComentarioEvento informado
         /// </summary>
         /// <param name="id"></param>
-        /// <returns>Evento selecionado</returns>
+        /// <returns>ComentarioEvento selecionado</returns>
         [Authorize]
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
             try
             {
-                return Ok(_EventoRepository.BuscarPorId(id));
+                return Ok(_ComentarioEventoRepository.BuscarPorId(id));
             }
             catch (Exception erro)
             {

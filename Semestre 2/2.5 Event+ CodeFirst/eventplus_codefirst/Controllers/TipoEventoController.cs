@@ -1,7 +1,9 @@
 ﻿using eventplus_codefirst.Domains;
 using eventplus_codefirst.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace eventplus_codefirst.Controllers
 {
@@ -21,6 +23,7 @@ namespace eventplus_codefirst.Controllers
         /// </summary>
         /// <param name="tipoEvento"></param>
         /// <returns></returns>
+        [Authorize(Roles = "C2100659-A7D7-4A0B-A513-B5D3FE4E416D")]
         [HttpPost]
         public IActionResult Post(TipoEvento tipoEvento)
         {
@@ -40,6 +43,7 @@ namespace eventplus_codefirst.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize(Roles = "C2100659-A7D7-4A0B-A513-B5D3FE4E416D")]
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
@@ -60,6 +64,7 @@ namespace eventplus_codefirst.Controllers
         /// <param name="id"></param>
         /// <param name="ins"></param>
         /// <returns>O tipo de usuário editado</returns>
+        [Authorize(Roles = "C2100659-A7D7-4A0B-A513-B5D3FE4E416D")]
         [HttpPatch("{id}")]
         public IActionResult UpdateById(Guid id, TipoEvento ins)
         {
@@ -77,6 +82,7 @@ namespace eventplus_codefirst.Controllers
         /// Lista todos os tipos de usuário
         /// </summary>
         /// <returns>Lista com todos os tipos de evento</returns>
+        [Authorize]
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -94,6 +100,8 @@ namespace eventplus_codefirst.Controllers
         /// Lista todos os tipos de usuário incluindo seus eventos
         /// </summary>
         /// <returns>Lista com todos os tipos de evento e seus eventos</returns>
+        
+        [Authorize]
         [HttpGet("ListarComEventos")]
         public IActionResult GetWithEvents()
         {
@@ -112,6 +120,7 @@ namespace eventplus_codefirst.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Tipo de usuário selecionado</returns>
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
@@ -130,6 +139,7 @@ namespace eventplus_codefirst.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Tipo de usuário selecionado incluindo seus eventos</returns>
+        [Authorize]
         [HttpGet("ListarComEventos{id}")]
         public IActionResult GetByIdWithEvents(Guid id)
         {

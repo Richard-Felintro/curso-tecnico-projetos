@@ -8,6 +8,6 @@ namespace eventplus_codefirst.Interfaces
         void Deletar(Guid id);
         List<TipoUsuario> Listar();
         TipoUsuario BuscarPorId(Guid id);
-        void Atualizar(Guid id, TipoUsuario tipoUsuario);
+        TipoUsuario Atualizar(Guid id, TipoUsuario tipoUsuario);
     }
 }

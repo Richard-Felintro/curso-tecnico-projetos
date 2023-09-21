@@ -9,5 +9,6 @@ namespace eventplus_codefirst.Interfaces
         public List<PresencaEvento> ListarTodos();
         public PresencaEvento BuscarPorId(Guid id);
         public PresencaEvento BuscarIdEAtualizar(Guid id, PresencaEvento Presenca);
+        public List<PresencaEvento> ListarMinhas(Guid id);
     }
 }

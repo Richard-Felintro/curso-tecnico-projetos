@@ -24,7 +24,7 @@
             </summary>
             <param name="id"></param>
             <param name="evento"></param>
-            <returns>Instituicão editada</returns>
+            <returns>Evento editado</returns>
         </member>
         <member name="M:eventplus_codefirst.Controllers.EventoController.GetAll">
             <summary>
@@ -86,6 +86,48 @@
             </summary>
             <param name="id"></param>
             <returns>Instituição selecionada com seus eventos</returns>
+        </member>
+        <member name="M:eventplus_codefirst.Controllers.PresencaEventoController.Post(eventplus_codefirst.Domains.PresencaEvento)">
+            <summary>
+            Cadastra um novo PresencaEvento
+            </summary>
+            <param name="PresencaEventoCadastrado"></param>
+            <returns>O PresencaEvento criada</returns>
+        </member>
+        <member name="M:eventplus_codefirst.Controllers.PresencaEventoController.Delete(System.Guid)">
+            <summary>
+            Busca um PresencaEvento que coincide com um IdPresencaEvento informado e o deleta
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:eventplus_codefirst.Controllers.PresencaEventoController.UpdateById(System.Guid,eventplus_codefirst.Domains.PresencaEvento)">
+            <summary>
+            Busca um PresencaEvento que coincide com um IdPresencaEvento e o atualiza com os dados da PresencaEvento informado
+            </summary>
+            <param name="id"></param>
+            <param name="PresencaEvento"></param>
+            <returns>Presença em evento editada</returns>
+        </member>
+        <member name="M:eventplus_codefirst.Controllers.PresencaEventoController.GetAll">
+            <summary>
+            Lista todos os PresencaEventos
+            </summary>
+            <returns>Lista com todas as presenças de eventos</returns>
+        </member>
+        <member name="M:eventplus_codefirst.Controllers.PresencaEventoController.GetById(System.Guid)">
+            <summary>
+            Buscar um PresencaEvento que coincide com um IdPresencaEvento informado
+            </summary>
+            <param name="id"></param>
+            <returns>Presença de evento selectionada</returns>
+        </member>
+        <member name="M:eventplus_codefirst.Controllers.PresencaEventoController.GetMine(System.Guid)">
+            <summary>
+            Buscar Todas presencas em evento de um usuário com o IdUsuario que coincide com o id informado
+            </summary>
+            <param name="id"></param>
+            <returns>Lista com as presenças de evento do usuário que coincide com o IdMencionado</returns>
         </member>
         <member name="M:eventplus_codefirst.Controllers.TipoEventoController.Post(eventplus_codefirst.Domains.TipoEvento)">
             <summary>

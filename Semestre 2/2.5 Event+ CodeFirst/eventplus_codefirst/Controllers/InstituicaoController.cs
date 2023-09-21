@@ -1,5 +1,6 @@
 ﻿using eventplus_codefirst.Domains;
 using eventplus_codefirst.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +22,7 @@ namespace eventplus_codefirst.Controllers
         /// </summary>
         /// <param name="instituicao"></param>
         /// <returns></returns>
+        [Authorize(Roles = "C2100659-A7D7-4A0B-A513-B5D3FE4E416D")]
         [HttpPost]
         public IActionResult Post(Instituicao instituicao)
         {
@@ -40,6 +42,7 @@ namespace eventplus_codefirst.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize(Roles = "C2100659-A7D7-4A0B-A513-B5D3FE4E416D")]
         [HttpDelete("{id}")]
         public IActionResult Delete(Guid id)
         {
@@ -60,6 +63,7 @@ namespace eventplus_codefirst.Controllers
         /// <param name="id"></param>
         /// <param name="ins"></param>
         /// <returns>Instituicão editada</returns>
+        [Authorize(Roles = "C2100659-A7D7-4A0B-A513-B5D3FE4E416D")]
         [HttpPatch]
         public IActionResult UpdateById(Guid id, Instituicao ins)
         {
@@ -77,6 +81,7 @@ namespace eventplus_codefirst.Controllers
         /// Lista todas as instituições
         /// </summary>
         /// <returns>Lista com todas as instituições</returns>
+        [Authorize]
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -94,6 +99,7 @@ namespace eventplus_codefirst.Controllers
         /// Lista todas as instituições incluindo seus eventos
         /// </summary>
         /// <returns>Lista de todas as instituições com seus eventos</returns>
+        [Authorize]
         [HttpGet("ListarComEventos")]
         public IActionResult GetWithEvents()
         {
@@ -112,6 +118,7 @@ namespace eventplus_codefirst.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Instituição selectionada</returns>
+        [Authorize]
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
@@ -130,6 +137,7 @@ namespace eventplus_codefirst.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Instituição selecionada com seus eventos</returns>
+        [Authorize]
         [HttpGet("ListarComEventos{id}")]
         public IActionResult GetByIdWithEvents(Guid id)
         {
