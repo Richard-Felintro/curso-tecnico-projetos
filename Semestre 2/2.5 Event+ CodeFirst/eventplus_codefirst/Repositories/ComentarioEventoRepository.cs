@@ -12,7 +12,6 @@ namespace eventplus_codefirst.Repositories
             _eventContext = new();
         }
 
-        []
         public void AlterarExibicao(Guid id)
         {
             try

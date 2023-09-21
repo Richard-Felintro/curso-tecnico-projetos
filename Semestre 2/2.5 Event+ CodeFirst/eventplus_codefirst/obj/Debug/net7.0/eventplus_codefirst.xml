@@ -4,6 +4,40 @@
         <name>eventplus_codefirst</name>
     </assembly>
     <members>
+        <member name="M:eventplus_codefirst.Controllers.ComentarioEventoController.Post(eventplus_codefirst.Domains.ComentarioEvento)">
+            <summary>
+            Cadastra um novo ComentarioEvento
+            </summary>
+            <param name="ComentarioEventoCadastrado"></param>
+            <returns>O comentário criado</returns>
+        </member>
+        <member name="M:eventplus_codefirst.Controllers.ComentarioEventoController.Delete(System.Guid)">
+            <summary>
+            Busca um ComentarioEvento que coincide com um IdComentarioEvento informado e o deleta
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:eventplus_codefirst.Controllers.ComentarioEventoController.UpdateById(System.Guid)">
+            <summary>
+            Busca um ComentarioEvento que coincide com um IdComentarioEvento e altera seu estado de exibição
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:eventplus_codefirst.Controllers.ComentarioEventoController.GetAll">
+            <summary>
+            Lista todos os ComentarioEventos
+            </summary>
+            <returns>Lista com todos os ComentarioEventos</returns>
+        </member>
+        <member name="M:eventplus_codefirst.Controllers.ComentarioEventoController.GetById(System.Guid)">
+            <summary>
+            Buscar um ComentarioEvento que coincide com um IdComentarioEvento informado
+            </summary>
+            <param name="id"></param>
+            <returns>ComentarioEvento selecionado</returns>
+        </member>
         <member name="M:eventplus_codefirst.Controllers.EventoController.Post(eventplus_codefirst.Domains.Evento)">
             <summary>
             Cadastra um novo Evento
@@ -37,7 +71,7 @@
             Buscar um Evento que coincide com um IdEvento informado
             </summary>
             <param name="id"></param>
-            <returns>Evento selectionado</returns>
+            <returns>Evento selecionado</returns>
         </member>
         <member name="M:eventplus_codefirst.Controllers.InstituicaoController.Post(eventplus_codefirst.Domains.Instituicao)">
             <summary>
@@ -176,6 +210,55 @@
             </summary>
             <param name="id"></param>
             <returns>Tipo de usuário selecionado incluindo seus eventos</returns>
+        </member>
+        <member name="M:eventplus_codefirst.Controllers.TipoUsuarioController.Delete(System.Guid)">
+            <summary>
+            Busca um TipoUsuario que coincide com um IdTipoUsuario informado e o deleta
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:eventplus_codefirst.Controllers.TipoUsuarioController.UpdateById(System.Guid,eventplus_codefirst.Domains.TipoUsuario)">
+            <summary>
+            Busca um TipoUsuario que coincide com um IdTipoUsuario e o atualiza com os dados da TipoUsuario informado
+            </summary>
+            <param name="id"></param>
+            <param name="TipoUsuario"></param>
+            <returns>O TipoUsuario editado</returns>
+        </member>
+        <member name="M:eventplus_codefirst.Controllers.TipoUsuarioController.GetAll">
+            <summary>
+            Lista todos os TipoUsuarios
+            </summary>
+            <returns>Lista com todos os TipoUsuarios</returns>
+        </member>
+        <member name="M:eventplus_codefirst.Controllers.TipoUsuarioController.GetById(System.Guid)">
+            <summary>
+            Buscar um TipoUsuario que coincide com um IdTipoUsuario informado
+            </summary>
+            <param name="id"></param>
+            <returns>TipoUsuario selecionado</returns>
+        </member>
+        <member name="M:eventplus_codefirst.Controllers.UsuarioController.UpdateById(System.Guid,eventplus_codefirst.Domains.Usuario)">
+            <summary>
+            Busca um Usuario que coincide com um IdUsuario e o atualiza com os dados da Usuario informado
+            </summary>
+            <param name="id"></param>
+            <param name="Usuario"></param>
+            <returns>Usuario editado</returns>
+        </member>
+        <member name="M:eventplus_codefirst.Controllers.UsuarioController.GetAll">
+            <summary>
+            Lista todos os Usuarios
+            </summary>
+            <returns>Lista com todos os Usuarios</returns>
+        </member>
+        <member name="M:eventplus_codefirst.Controllers.UsuarioController.GetById(System.Guid)">
+            <summary>
+            Buscar um Usuario que coincide com um IdUsuario informado
+            </summary>
+            <param name="id"></param>
+            <returns>Usuario selecionado</returns>
         </member>
         <member name="T:eventplus_codefirst.Migrations.BDv1">
             <inheritdoc />
