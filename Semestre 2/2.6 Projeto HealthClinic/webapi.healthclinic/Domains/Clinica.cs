@@ -39,15 +39,15 @@ namespace webapi.healthclinic.Domains
         /// <summary>
         /// Horário no qual a Clinica em questao abre diariamente
         /// </summary>
-        [Column(TypeName = "DATE")]
+        [Column(TypeName = "TIME")]
         [Required(ErrorMessage = "Horário de início de atendimento não determinada")]
-        public TimeOnly AtendimentoInicio { get; set; }
+        public TimeSpan AtendimentoInicio { get; set; } = new();
 
         /// <summary>
         /// Horário no qual a Clinica em questao fecha diariamente
         /// </summary>
-        [Column(TypeName = "DATE")]
+        [Column(TypeName = "TIME")]
         [Required(ErrorMessage = "Horário do fim de atendimento não determinada")]
-        public TimeOnly AtendimentoFim { get; set; }
+        public TimeSpan AtendimentoFim { get; set; } = new();
     }
 }

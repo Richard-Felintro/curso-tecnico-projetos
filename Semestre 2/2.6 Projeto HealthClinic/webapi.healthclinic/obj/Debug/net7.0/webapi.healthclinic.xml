@@ -1,0 +1,351 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>webapi.healthclinic</name>
+    </assembly>
+    <members>
+        <member name="T:webapi.healthclinic.Contexts._context">
+            <summary>
+            Contexto que conecta esta API com o banco
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Contexts._context.Administrador">
+            <summary>
+            O DbSet referente a tabela de Administrador
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Contexts._context.Clinica">
+            <summary>
+            O DbSet referente a tabela de Clinica
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Contexts._context.Consulta">
+            <summary>
+            O DbSet referente a tabela de Consulta
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Contexts._context.Especialidade">
+            <summary>
+            O DbSet referente a tabela de Especialidade
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Contexts._context.Medico">
+            <summary>
+            O DbSet referente a tabela de Medico
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Contexts._context.Paciente">
+            <summary>
+            O DbSet referente a tabela de Paciente
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Contexts._context.Prontuario">
+            <summary>
+            O DbSet referente a tabela de Prontuario
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Contexts._context.TipoUsuario">
+            <summary>
+            O DbSet referente a tabela de TipoUsuario
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Contexts._context.Usuario">
+            <summary>
+            O DbSet referente a tabela de Usuario
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Contexts._context.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            Determina os dados a serem utilizados no processo de configuração do banco de dado e Migration
+            </summary>
+            <param name="optionsBuilder"></param>
+        </member>
+        <member name="T:webapi.healthclinic.Domains.Administrador">
+            <summary>
+            Tabela que contem as informações de administrador a todos os usuários que as contém
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Administrador.IdAdministrador">
+            <summary>
+            Identificador único dos itens da tabela Administrador
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Administrador.IdUsuario">
+            <summary>
+            Foreign key referente ao usuário relacionado aos dados de Administrador
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Administrador.Usuario">
+            <summary>
+            Usuario referenciado pela foreign key IdUsuario acima
+            </summary>
+        </member>
+        <member name="T:webapi.healthclinic.Domains.Clinica">
+            <summary>
+            Tabela que contem todas as clínicas cadastradas
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Clinica.IdClinica">
+            <summary>
+            Identificador único dos itens da tabela Clinica
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Clinica.RazaoSocial">
+            <summary>
+            Razão social (nome formal) da Clinica
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Clinica.NomeFantasia">
+            <summary>
+            Nome fantasia (nome informal) da Clinica
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Clinica.Endereco">
+            <summary>
+            Endereço da Clinica
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Clinica.AtendimentoInicio">
+            <summary>
+            Horário no qual a Clinica em questao abre diariamente
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Clinica.AtendimentoFim">
+            <summary>
+            Horário no qual a Clinica em questao fecha diariamente
+            </summary>
+        </member>
+        <member name="T:webapi.healthclinic.Domains.Comentario">
+            <summary>
+            Tabela que contem todos os comentários cadastrados
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Comentario.IdComentario">
+            <summary>
+            Identificador único dos itens da tabela Usuario
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Comentario.IdConsulta">
+            <summary>
+            Foreign key referente a consulta que na qual o comentário pertence
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Comentario.Consulta">
+            <summary>
+            Consulta referenciado pela foreign key IdConsulta acima
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Comentario.IdUsuario">
+            <summary>
+            Foreign key referente ao usuario que na qual o comentário pertence
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Comentario.Usuario">
+            <summary>
+            Usuario referenciado pela foreign key IdUsuario acima
+            </summary>
+        </member>
+        <member name="T:webapi.healthclinic.Domains.Consulta">
+            <summary>
+            Tabela que contem todas as consultas cadastradas
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Consulta.IdConsulta">
+            <summary>
+            Identificador único dos itens da tabela Consulta
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Consulta.DataAtendimento">
+            <summary>
+            A data de acontecimento da consulta
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Consulta.HoraAtendimento">
+            <summary>
+            O horário esperado do início da consulta
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Consulta.IdPaciente">
+            <summary>
+            Foreign key referente ao usuário que comparecerá a consulta
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Consulta.Paciente">
+            <summary>
+            Paciente referenciado pela foreign key IdPaciente acima
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Consulta.IdMedico">
+            <summary>
+            Foreign key referente ao usuário que comparecerá a consulta
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Consulta.Medico">
+            <summary>
+            Medico referenciado pela foreign key IdMedico acima
+            </summary>
+        </member>
+        <member name="T:webapi.healthclinic.Domains.Especialidade">
+            <summary>
+            Tabela que contem todas as especialidades de médico cadastradas
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Especialidade.IdEspecialidade">
+            <summary>
+            Identificador único dos itens da tabela Especialidade
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Especialidade.Titulo">
+            <summary>
+            Título (nome) da Especialidade
+            </summary>
+        </member>
+        <member name="T:webapi.healthclinic.Domains.Medico">
+            <summary>
+            Tabela que contem as informações de médico a todos os usuários que as contém
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Medico.IdMedico">
+            <summary>
+            Identificador único dos itens da tabela Medico
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Medico.IdUsuario">
+            <summary>
+            Foreign key referente ao usuário relacionado aos dados de Medico
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Medico.Usuario">
+            <summary>
+            Usuario referenciado pela foreign key IdUsuario acima
+            </summary>
+        </member>
+        <member name="T:webapi.healthclinic.Domains.Paciente">
+            <summary>
+            Tabela que contem as informações de paciente a todos os usuários que as contém
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Paciente.IdPaciente">
+            <summary>
+            Identificador único dos itens da tabela Paciente
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Paciente.IdUsuario">
+            <summary>
+            Foreign key referente ao usuário relacionado aos dados de Paciente
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Paciente.Usuario">
+            <summary>
+            Usuario referenciado pela foreign key IdUsuario acima
+            </summary>
+        </member>
+        <member name="T:webapi.healthclinic.Domains.Prontuario">
+            <summary>
+            Tabela que contem todos os prontuários cadastrados (parte da consulta)
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Prontuario.IdProntuario">
+            <summary>
+            Identificador único dos itens da tabela Prontuario
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Prontuario.Conteudo">
+            <summary>
+            Conteúdo textual do prontuário
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Prontuario.IdConsulta">
+            <summary>
+            Foreign key referente a consulta que na qual o prontuário pertence
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Prontuario.Consulta">
+            <summary>
+            Consulta referenciado pela foreign key IdConsulta acima
+            </summary>
+        </member>
+        <member name="T:webapi.healthclinic.Domains.TipoUsuario">
+            <summary>
+            Tabela que contem todos os tipos de usuário cadastrados
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.TipoUsuario.IdTipoUsuario">
+            <summary>
+            Identificador único dos itens da tabela TipoUsuario
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.TipoUsuario.Titulo">
+            <summary>
+            Título (nome) do TipoUsuario
+            </summary>
+        </member>
+        <member name="T:webapi.healthclinic.Domains.Usuario">
+            <summary>
+            Tabela que contem todos os usuário cadastrados
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Usuario.IdUsuario">
+            <summary>
+            Identificador único dos itens da tabela Usuario
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Usuario.Nome">
+            <summary>
+            O nome referente ao Usuario
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Usuario.Email">
+            <summary>
+            O email único referente ao Usuario
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Usuario.Senha">
+            <summary>
+            A senha referente ao Usuario que será futuramente criptografada
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Usuario.IdTipoUsuario">
+            <summary>
+            Referência a tabela TipoUsuario = FK
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Usuario.TipoUsuario">
+            <summary>
+            TipoUsuario referido pela FK acima
+            </summary>
+        </member>
+        <member name="T:webapi.healthclinic.Migrations.addmigrationdb">
+            <inheritdoc />
+        </member>
+        <member name="M:webapi.healthclinic.Migrations.addmigrationdb.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:webapi.healthclinic.Migrations.addmigrationdb.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:webapi.healthclinic.Migrations.addmigrationdb.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:webapi.healthclinic.Utils.Criptografia">
+            <summary>
+            Classe estática responsável por dois métodos essenciais a criptografia
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Utils.Criptografia.GerarHash(System.String)">
+            <summary>
+            Gera uma hash utilizando a senha informada no parametro
+            </summary>
+            <param name="senha"></param>
+            <returns>Senha criptografada</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Utils.Criptografia.CompararHash(System.String,System.String)">
+            <summary>
+            Compara a versão criptografada a senha informada pelo usuário e a do usuário no qual ele está tentando logar
+            </summary>
+            <param name="senhaForm"></param>
+            <param name="senhaBanco"></param>
+            <returns>True se elas coincidem, false se não</returns>
+        </member>
+    </members>
+</doc>

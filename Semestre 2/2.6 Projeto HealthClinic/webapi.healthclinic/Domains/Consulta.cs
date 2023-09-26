@@ -1,8 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.SqlTypes;
 
 namespace webapi.healthclinic.Domains
 {
+    /// <summary>
+    /// Tabela que contem todas as consultas cadastradas
+    /// </summary>
     [Table(nameof(Consulta))]   
     public class Consulta
     {
@@ -17,20 +21,14 @@ namespace webapi.healthclinic.Domains
         /// </summary>
         [Column(TypeName ="DATE")]
         [Required(ErrorMessage = "Data de atendimento não determinada")]
-        public DateOnly DataAtendimento { get; set; }
+        public DateTime DataAtendimento { get; set; }
 
         /// <summary>
         /// O horário esperado do início da consulta
         /// </summary>
         [Column(TypeName = "TIME")]
         [Required(ErrorMessage = "Hora de atendimento não determinada")]
-        public TimeOnly HoraAtendimento { get; set; }
-
-        /// <summary>
-        /// O conteúdo do prontuário de uma consulta, este campo é nulável para que possa ser preenchido após a consulta
-        /// </summary>
-        [Column(TypeName = "TEXT")]
-        public string? Prontuario { get; set; }
+        public TimeSpan HoraAtendimento { get; set; } = new();
 
         /// <summary>
         /// Foreign key referente ao usuário que comparecerá a consulta
