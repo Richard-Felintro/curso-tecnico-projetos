@@ -41,13 +41,13 @@ namespace webapi.healthclinic.Domains
         /// </summary>
         [Column(TypeName = "TIME")]
         [Required(ErrorMessage = "Horário de início de atendimento não determinada")]
-        public TimeSpan AtendimentoInicio { get; set; } = new();
+        public TimeOnly AtendimentoInicio { get; set; }
 
         /// <summary>
         /// Horário no qual a Clinica em questao fecha diariamente
         /// </summary>
         [Column(TypeName = "TIME")]
         [Required(ErrorMessage = "Horário do fim de atendimento não determinada")]
-        public TimeSpan AtendimentoFim { get; set; } = new();
+        public TimeOnly AtendimentoFim { get; set; }
     }
 }

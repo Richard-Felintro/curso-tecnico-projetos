@@ -4,61 +4,117 @@
         <name>webapi.healthclinic</name>
     </assembly>
     <members>
-        <member name="T:webapi.healthclinic.Contexts._context">
+        <member name="T:webapi.healthclinic.Contexts.ClinicContext">
             <summary>
             Contexto que conecta esta API com o banco
             </summary>
         </member>
-        <member name="P:webapi.healthclinic.Contexts._context.Administrador">
+        <member name="P:webapi.healthclinic.Contexts.ClinicContext.Administrador">
             <summary>
             O DbSet referente a tabela de Administrador
             </summary>
         </member>
-        <member name="P:webapi.healthclinic.Contexts._context.Clinica">
+        <member name="P:webapi.healthclinic.Contexts.ClinicContext.Clinica">
             <summary>
             O DbSet referente a tabela de Clinica
             </summary>
         </member>
-        <member name="P:webapi.healthclinic.Contexts._context.Consulta">
+        <member name="P:webapi.healthclinic.Contexts.ClinicContext.Consulta">
             <summary>
             O DbSet referente a tabela de Consulta
             </summary>
         </member>
-        <member name="P:webapi.healthclinic.Contexts._context.Especialidade">
+        <member name="P:webapi.healthclinic.Contexts.ClinicContext.Especialidade">
             <summary>
             O DbSet referente a tabela de Especialidade
             </summary>
         </member>
-        <member name="P:webapi.healthclinic.Contexts._context.Medico">
+        <member name="P:webapi.healthclinic.Contexts.ClinicContext.Medico">
             <summary>
             O DbSet referente a tabela de Medico
             </summary>
         </member>
-        <member name="P:webapi.healthclinic.Contexts._context.Paciente">
+        <member name="P:webapi.healthclinic.Contexts.ClinicContext.Paciente">
             <summary>
             O DbSet referente a tabela de Paciente
             </summary>
         </member>
-        <member name="P:webapi.healthclinic.Contexts._context.Prontuario">
+        <member name="P:webapi.healthclinic.Contexts.ClinicContext.Prontuario">
             <summary>
             O DbSet referente a tabela de Prontuario
             </summary>
         </member>
-        <member name="P:webapi.healthclinic.Contexts._context.TipoUsuario">
+        <member name="P:webapi.healthclinic.Contexts.ClinicContext.TipoUsuario">
             <summary>
             O DbSet referente a tabela de TipoUsuario
             </summary>
         </member>
-        <member name="P:webapi.healthclinic.Contexts._context.Usuario">
+        <member name="P:webapi.healthclinic.Contexts.ClinicContext.Usuario">
             <summary>
             O DbSet referente a tabela de Usuario
             </summary>
         </member>
-        <member name="M:webapi.healthclinic.Contexts._context.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+        <member name="P:webapi.healthclinic.Contexts.ClinicContext.Comentario">
+            <summary>
+            O DbSet referente a tabela de Comentario
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Contexts.ClinicContext.ConfigureConventions(Microsoft.EntityFrameworkCore.ModelConfigurationBuilder)">
+            <summary>
+            Determina que o TimeOnly será convertido para ser usado propriamente no campo
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="M:webapi.healthclinic.Contexts.ClinicContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
             <summary>
             Determina os dados a serem utilizados no processo de configuração do banco de dado e Migration
             </summary>
             <param name="optionsBuilder"></param>
+        </member>
+        <member name="T:webapi.healthclinic.Controllers.ClinicaController">
+            <summary>
+            Controller responsável pelo CRUD da tabela Clinica
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.ClinicaController.#ctor">
+            <summary>
+            Quando o controller é acionado uma ClinicaRepository é declarada para poder usar seus métodos
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.ClinicaController.Post(webapi.healthclinic.Domains.Clinica)">
+            <summary>
+            Cadastra a Clinica no parametro e o adiciona ao banco de dados
+            </summary>
+            <param name="clinica"></param>
+            <returns> Se a ação suceder, Status Code 201 Created com uma mensagem em referência ao sucesso da operação e a Clinica cadastrada, se a operação falhar retorna Status Code 400 (Bad Request) com a mensagem de erro</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.ClinicaController.Delete(System.Guid)">
+            <summary>
+            Busca uma Clinica pelo seu IdClinica e a deleta da database se for encontrada
+            </summary>
+            <param name="id"></param>
+            <returns> Se a ação suceder, Status Code 200 Ok com uma mensagem em referência, se a operação falhar retorna Status Code 404 (Not Found) com a mensagem de erro </returns>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.ClinicaController.GetAll">
+            <summary>
+            Transforma a tabela de Clinicas em uma lista e a retorna
+            </summary>
+            <returns> Se suceder, retorna um Status Code 200 Ok com a lista que inclui a tabela Clinica, se a operação falhar retorna Status Code 400 (Bad Request) com a mensagem de erro </returns>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.ClinicaController.GetById(System.Guid)">
+            <summary>
+            Busca uma Clinica pelo seu IdClinica
+            </summary>
+            <param name="id"></param>
+            <returns> Se a ação suceder, Status Code 200 Ok com a Clinica encontrada, se a operação falhar retorna Status Code 404 (Not Found) com a mensagem de erro </returns>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.ClinicaController.UpdateById(System.Guid,webapi.healthclinic.Domains.Clinica)">
+            <summary>
+            Busca uma Clinica pelo seu IdClinica, se ela for encontrada a edita usando a Clinica parametro
+            </summary>
+            <param name="id"></param>
+            <param name="clinica"></param>
+            <returns> Se a ação suceder, Status Code 201 Created com a Clinica edita e uma mensagem em referência ao sucesso da ação, se a operação falhar retorna Status Code 404 (Not Found) com sua mensagem de erro </returns>
         </member>
         <member name="T:webapi.healthclinic.Domains.Administrador">
             <summary>
@@ -123,6 +179,16 @@
         <member name="P:webapi.healthclinic.Domains.Comentario.IdComentario">
             <summary>
             Identificador único dos itens da tabela Usuario
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Comentario.Conteudo">
+            <summary>
+            Determina o corpo de texto do Comentario
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Comentario.Exibe">
+            <summary>
+            Determina se o comentário será exibido
             </summary>
         </member>
         <member name="P:webapi.healthclinic.Domains.Comentario.IdConsulta">
@@ -208,6 +274,11 @@
         <member name="P:webapi.healthclinic.Domains.Medico.IdMedico">
             <summary>
             Identificador único dos itens da tabela Medico
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Medico.CRM">
+            <summary>
+            O identificador único CRM de um profissional médico cadastrado
             </summary>
         </member>
         <member name="P:webapi.healthclinic.Domains.Medico.IdUsuario">
@@ -315,17 +386,410 @@
             TipoUsuario referido pela FK acima
             </summary>
         </member>
-        <member name="T:webapi.healthclinic.Migrations.addmigrationdb">
+        <member name="T:webapi.healthclinic.Interfaces.IAdministradorRepository">
+            <summary>
+            Interface responsável pelos métodos do Administrador
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IAdministradorRepository.BuscarPorId(System.Guid)">
+            <summary>
+            Busca um Administrador baseado no parametro IdUsuario do Usuario no qual ele está relacionado
+            </summary>
+            <param name="IdUsuario"></param>
+            <returns>O Administrador achado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IAdministradorRepository.Cadastrar(System.Guid)">
+            <summary>
+            Cadastra o Administrador, utilizando o parametro IdUsuario para conectá-lo a um Usuario
+            </summary>
+            <param name="IdUsuario"></param>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IAdministradorRepository.Deletar(System.Guid)">
+            <summary>
+            Cadastra o Administrador, utilizando o parametro id para conectá-lo a um Usuario
+            </summary>
+            <param name="IdUsuario"></param>
+        </member>
+        <member name="T:webapi.healthclinic.Interfaces.IClinicaRepository">
+            <summary>
+            Interface responsável pelos métodos da Clinica
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IClinicaRepository.AtualizarPorId(System.Guid,webapi.healthclinic.Domains.Clinica)">
+            <summary> Busca uma Clinica, comparando seu IdClinica com o parametro id e o edita usando o parametro 'atualizar' para determinar seus novos parametros </summary>
+            <param name="id"></param>
+            <param name="atualizar"></param>
+            <returns> A Clinica atualizada </returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IClinicaRepository.BuscarPorId(System.Guid)">
+            <summary>
+            Busca uma Clinica, comparando seu IdClinica com o parametro id, se alguma Clinica for compatível ela é retornada
+            </summary>
+            <param name="id"></param>
+            <returns> A Clinica buscada </returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IClinicaRepository.Cadastrar(webapi.healthclinic.Domains.Clinica)">
+            <summary>
+            Cadastra a Clinica "cadastrado" e o adiciona ao banco de dados
+            </summary>
+            <param name="cadastrado"></param>
+            <returns> A Clinica cadastrada </returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IClinicaRepository.DeletarPorID(System.Guid)">
+            <summary>
+            Busca uma Clinica pelo seu Id e a deleta da database se for encontrada
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IClinicaRepository.ListarTodos">
+            <summary>
+            Transforma a tabela de Clinica em uma List de Clinica e a retorna
+            </summary>
+            <returns> Uma lista com todas as Clinica cadastradas </returns>
+        </member>
+        <member name="T:webapi.healthclinic.Interfaces.IComentarioRepository">
+            <summary>
+            Interface responsável pelos métodos do Comentario
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IComentarioRepository.AtualizarPorId(System.Guid,webapi.healthclinic.Domains.Comentario)">
+            <summary>
+            Busca um Comentario, comparando seu IdComentario com o parametro id e o edita usando o parametro 'atualizar' para determinar seus novos parametros
+            </summary>
+            <param name="id"></param>
+            <param name="atualizar"></param>
+            <returns>O usuário atualizado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IComentarioRepository.BuscarPorId(System.Guid)">
+            <summary>
+            Busca um Comentario, comparando seu IdComentario com o parametro id
+            </summary>
+            <param name="id"></param>
+            <returns>O Comentario buscado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IComentarioRepository.Cadastrar(webapi.healthclinic.Domains.Comentario)">
+            <summary>
+            Cadastra o Comentario "cadastrado" e o adiciona ao banco de dados
+            </summary>
+            <param name="cadastrado"></param>
+            <returns>O Comentario cadastrado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IComentarioRepository.DeletarPorID(System.Guid)">
+            <summary>
+            Busca um Comentario, comparando seu IdComentario com o parametro id e o deleta da database
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IComentarioRepository.ListarTodos">
+            <summary>
+            Transforma a tabela de Comentario em uma List de Comentario e a retorna
+            </summary>
+            <returns>Uma lista com todos os Comentario cadastrados</returns>
+        </member>
+        <member name="T:webapi.healthclinic.Interfaces.IConsultaRepository">
+            <summary>
+            Interface responsável pelos métodos da Consulta
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IConsultaRepository.AtualizarPorId(System.Guid,webapi.healthclinic.Domains.Consulta)">
+            <summary>
+            Busca uma Consulta, comparando seu IdConsulta com o parametro id e o edita usando o parametro 'atualizar' para determinar seus novos parametros
+            </summary>
+            <param name="id"></param>
+            <param name="atualizar"></param>
+            <returns>O usuário atualizado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IConsultaRepository.BuscarPorId(System.Guid)">
+            <summary>
+            Busca uma Consulta, comparando seu IdConsulta com o parametro id
+            </summary>
+            <param name="id"></param>
+            <returns>O Consulta buscado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IConsultaRepository.Cadastrar(webapi.healthclinic.Domains.Consulta)">
+            <summary>
+            Cadastra a Consulta "cadastrado" e o adiciona ao banco de dados
+            </summary>
+            <param name="cadastrado"></param>
+            <returns>O Consulta cadastrado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IConsultaRepository.DeletarPorID(System.Guid)">
+            <summary>
+            Busca uma Consulta, comparando seu IdConsulta com o parametro id e a deleta da database
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IConsultaRepository.ListarTodos">
+            <summary>
+            Transforma a tabela de Consulta em uma List de Consulta e a retorna
+            </summary>
+            <returns>Uma lista com todos os Consulta cadastrados</returns>
+        </member>
+        <member name="T:webapi.healthclinic.Interfaces.IEspecialidadeRepository">
+            <summary>
+            Interface responsável pelos métodos da Especialidade
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IEspecialidadeRepository.AtualizarPorId(System.Guid,webapi.healthclinic.Domains.Especialidade)">
+            <summary>
+            Busca uma Especialidade, comparando seu IdEspecialidade com o parametro id e o edita usando o parametro 'atualizar' para determinar seus novos parametros
+            </summary>
+            <param name="id"></param>
+            <param name="atualizar"></param>
+            <returns>O usuário atualizado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IEspecialidadeRepository.BuscarPorId(System.Guid)">
+            <summary>
+            Busca uma Especialidade, comparando seu IdEspecialidade com o parametro id
+            </summary>
+            <param name="id"></param>
+            <returns>O Especialidade buscado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IEspecialidadeRepository.Cadastrar(webapi.healthclinic.Domains.Especialidade)">
+            <summary>
+            Cadastra a Especialidade "cadastrado" e o adiciona ao banco de dados
+            </summary>
+            <param name="cadastrado"></param>
+            <returns>O Especialidade cadastrado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IEspecialidadeRepository.DeletarPorID(System.Guid)">
+            <summary>
+            Busca uma Especialidade, comparando seu IdEspecialidade com o parametro id e a deleta da database
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IEspecialidadeRepository.ListarTodos">
+            <summary>
+            Transforma a tabela de Especialidade em uma List de Especialidade e a retorna
+            </summary>
+            <returns>Uma lista com todos os Especialidade cadastrados</returns>
+        </member>
+        <member name="T:webapi.healthclinic.Interfaces.IMedicoRepository">
+            <summary>
+            Interface responsável pelos métodos do Medico
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IMedicoRepository.BuscarPorId(System.Guid)">
+            <summary>
+            Busca um Medico baseado no parametro IdUsuario do Usuario no qual ele está relacionado
+            </summary>
+            <param name="IdUsuario"></param>
+            <returns>O Medico achado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IMedicoRepository.Cadastrar(System.Guid)">
+            <summary>
+            Cadastra o Medico, utilizando o parametro IdUsuario para conectá-lo a um Usuario
+            </summary>
+            <param name="IdUsuario"></param>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IMedicoRepository.Deletar(System.Guid)">
+            <summary>
+            Cadastra o Medico, utilizando o parametro id para conectá-lo a um Usuario
+            </summary>
+            <param name="IdUsuario"></param>
+        </member>
+        <member name="T:webapi.healthclinic.Interfaces.IPacienteRepository">
+            <summary>
+            Interface responsável pelos métodos do Paciente
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IPacienteRepository.BuscarPorId(System.Guid)">
+            <summary>
+            Busca um Paciente baseado no parametro IdUsuario do Usuario no qual ele está relacionado
+            </summary>
+            <param name="IdUsuario"></param>
+            <returns>O Paciente achado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IPacienteRepository.Cadastrar(System.Guid)">
+            <summary>
+            Cadastra o Paciente, utilizando o parametro IdUsuario para conectá-lo a um Usuario
+            </summary>
+            <param name="IdUsuario"></param>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IPacienteRepository.Deletar(System.Guid)">
+            <summary>
+            Cadastra o Paciente, utilizando o parametro id para conectá-lo a um Usuario
+            </summary>
+            <param name="IdUsuario"></param>
+        </member>
+        <member name="T:webapi.healthclinic.Interfaces.IProntuarioRepository">
+            <summary>
+            Interface responsável pelos métodos do Prontuario
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IProntuarioRepository.AtualizarPorId(System.Guid,webapi.healthclinic.Domains.Prontuario)">
+            <summary>
+            Busca um Prontuario, comparando seu IdProntuario com o parametro id e o edita usando o parametro 'atualizar' para determinar seus novos parametros
+            </summary>
+            <param name="id"></param>
+            <param name="atualizar"></param>
+            <returns>O usuário atualizado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IProntuarioRepository.BuscarPorId(System.Guid)">
+            <summary>
+            Busca um Prontuario, comparando seu IdProntuario com o parametro id
+            </summary>
+            <param name="id"></param>
+            <returns>O Prontuario buscado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IProntuarioRepository.Cadastrar(webapi.healthclinic.Domains.Prontuario)">
+            <summary>
+            Cadastra o Prontuario "cadastrado" e o adiciona ao banco de dados
+            </summary>
+            <param name="cadastrado"></param>
+            <returns>O Prontuario cadastrado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IProntuarioRepository.DeletarPorID(System.Guid)">
+            <summary>
+            Busca um Prontuario, comparando seu IdProntuario com o parametro id e o deleta da database
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IProntuarioRepository.ListarTodos">
+            <summary>
+            Transforma a tabela de Prontuario em uma List de Prontuario e a retorna
+            </summary>
+            <returns>Uma lista com todos os Prontuario cadastrados</returns>
+        </member>
+        <member name="T:webapi.healthclinic.Interfaces.ITipoUsuarioRepository">
+            <summary>
+            Interface responsável pelos métodos do TipoUsuario
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.ITipoUsuarioRepository.AtualizarPorId(System.Guid,webapi.healthclinic.Domains.TipoUsuario)">
+            <summary>
+            Busca um TipoUsuario, comparando seu IdTipoUsuario com o parametro id e o edita usando o parametro 'atualizar' para determinar seus novos parametros
+            </summary>
+            <param name="id"></param>
+            <param name="atualizar"></param>
+            <returns>O usuário atualizado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.ITipoUsuarioRepository.BuscarPorId(System.Guid)">
+            <summary>
+            Busca um TipoUsuario, comparando seu IdTipoUsuario com o parametro id
+            </summary>
+            <param name="id"></param>
+            <returns>O TipoUsuario buscado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.ITipoUsuarioRepository.Cadastrar(webapi.healthclinic.Domains.TipoUsuario)">
+            <summary>
+            Cadastra o TipoUsuario "cadastrado" e o adiciona ao banco de dados
+            </summary>
+            <param name="cadastrado"></param>
+            <returns>O TipoUsuario cadastrado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.ITipoUsuarioRepository.DeletarPorID(System.Guid)">
+            <summary>
+            Busca um TipoUsuario, comparando seu IdTipoUsuario com o parametro id e o deleta da database
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.ITipoUsuarioRepository.ListarTodos">
+            <summary>
+            Transforma a tabela de TipoUsuario em uma List de TipoUsuario e a retorna
+            </summary>
+            <returns>Uma lista com todos os TipoUsuario cadastrados</returns>
+        </member>
+        <member name="T:webapi.healthclinic.Interfaces.IUsuarioRepository">
+            <summary>
+            Interface responsável pelos métodos do Usuario
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IUsuarioRepository.AtualizarPorId(System.Guid,webapi.healthclinic.Domains.Usuario)">
+            <summary>
+            Busca um Usuario, comparando seu IdUsuario com o parametro id e o edita usando o parametro 'atualizar' para determinar seus novos parametros
+            </summary>
+            <param name="id"></param>
+            <param name="atualizar"></param>
+            <returns>O usuário atualizado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IUsuarioRepository.BuscarPorEmailESenha(System.String,System.String)">
+            <summary>
+            Busca um Usuario baseado em sua Senha e Email para saber se o login coincide
+            </summary>
+            <param name="email"></param>
+            <param name="senha"></param>
+            <returns>O Usuario que coincide com o email e senha, nulo se nenhum for achado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IUsuarioRepository.BuscarPorId(System.Guid)">
+            <summary>
+            Busca um Usuario, comparando seu IdUsuario com o parametro id
+            </summary>
+            <param name="id"></param>
+            <returns>O Usuario buscado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IUsuarioRepository.Cadastrar(webapi.healthclinic.Domains.Usuario)">
+            <summary>
+            Cadastra o Usuario "cadastrado" e o adiciona ao banco de dados
+            </summary>
+            <param name="cadastrado"></param>
+            <returns>O Usuario cadastrado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IUsuarioRepository.DeletarPorID(System.Guid)">
+            <summary>
+            Busca um Usuario, comparando seu IdUsuario com o parametro id e o deleta da database
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IUsuarioRepository.ListarTodos">
+            <summary>
+            Transforma a tabela de Usuario em uma List de Usuario e a retorna
+            </summary>
+            <returns>Uma lista com todos os Usuario cadastrados</returns>
+        </member>
+        <member name="T:webapi.healthclinic.Migrations.db">
             <inheritdoc />
         </member>
-        <member name="M:webapi.healthclinic.Migrations.addmigrationdb.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:webapi.healthclinic.Migrations.db.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:webapi.healthclinic.Migrations.addmigrationdb.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:webapi.healthclinic.Migrations.db.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:webapi.healthclinic.Migrations.addmigrationdb.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:webapi.healthclinic.Migrations.db.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
+        </member>
+        <member name="T:webapi.healthclinic.Repositories.ClinicaRepository">
+            <summary>
+            O repositório por trás da tabela de Clinica
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.ClinicaRepository.#ctor">
+            <summary>
+            Quando um repositório é instanciado o _Context é declarado como um ClinicContext
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.ClinicaRepository.AtualizarPorId(System.Guid,webapi.healthclinic.Domains.Clinica)">
+            <summary> Busca uma Clinica, comparando seu IdClinica com o parametro id, se esta clinica for achada, todos seus dados, exceto (IdClinica) serão subtituídos com os dados informado no parametro "atualizar" </summary> 
+            <param name="id"></param>
+            <param name="atualizar"></param>
+            <returns> A Clinica atualizada </returns>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.ClinicaRepository.BuscarPorId(System.Guid)">
+            <summary>
+            Busca uma Clinica, comparando seu IdClinica com o parametro id
+            </summary>
+            <param name="id"></param>
+            <returns> A Clinica buscada </returns>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.ClinicaRepository.Cadastrar(webapi.healthclinic.Domains.Clinica)">
+            <summary>
+            Cadastra uma nova Clinica com os dados do parametro cadastrado
+            </summary>
+            <param name="cadastrado"></param>
+            <returns> A Clinica cadastrada </returns>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.ClinicaRepository.DeletarPorID(System.Guid)">
+            <summary>
+            Busca uma Clinica pelo seu Id e a deleta da database se for encontrada
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.ClinicaRepository.ListarTodos">
+            <summary>
+            Transforma a tabela de Clinica em uma List de Clinica e a retorna
+            </summary>
+            <returns> Uma lista com todas as Clinica cadastradas </returns>
         </member>
         <member name="T:webapi.healthclinic.Utils.Criptografia">
             <summary>
@@ -346,6 +810,31 @@
             <param name="senhaForm"></param>
             <param name="senhaBanco"></param>
             <returns>True se elas coincidem, false se não</returns>
+        </member>
+        <member name="T:webapi.healthclinic.Utils.TimeOnlyConverter">
+            <summary>
+            Convertor de unidades que converte o TimeOnly para uma variável usável
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Utils.TimeOnlyConverter.#ctor">
+            <summary>
+            Método para quando o covnersor é ativado
+            </summary>
+        </member>
+        <member name="T:webapi.healthclinic.ViewModels.LoginViewModel">
+            <summary>
+            O ViewModel que o usuário terá acesso quando estiver se logando a uma conta
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.ViewModels.LoginViewModel.Email">
+            <summary>
+            O email a ser informado na ViewModel para se logar
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.ViewModels.LoginViewModel.Senha">
+            <summary>
+            O senha a ser informado na ViewModel para se logar
+            </summary>
         </member>
     </members>
 </doc>

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace webapi.healthclinic.Migrations
 {
     /// <inheritdoc />
-    public partial class Addmigrationdb : Migration
+    public partial class db : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,8 +19,8 @@ namespace webapi.healthclinic.Migrations
                     RazaoSocial = table.Column<string>(type: "VARCHAR(128)", nullable: false),
                     NomeFantasia = table.Column<string>(type: "VARCHAR(128)", nullable: false),
                     Endereco = table.Column<string>(type: "VARCHAR(256)", nullable: false),
-                    AtendimentoInicio = table.Column<TimeSpan>(type: "TIME", nullable: false),
-                    AtendimentoFim = table.Column<TimeSpan>(type: "TIME", nullable: false)
+                    AtendimentoInicio = table.Column<TimeSpan>(type: "time", nullable: false),
+                    AtendimentoFim = table.Column<TimeSpan>(type: "time", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -95,6 +95,7 @@ namespace webapi.healthclinic.Migrations
                 columns: table => new
                 {
                     IdMedico = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CRM = table.Column<string>(type: "CHAR(8)", nullable: false),
                     IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -132,7 +133,7 @@ namespace webapi.healthclinic.Migrations
                 {
                     IdConsulta = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DataAtendimento = table.Column<DateTime>(type: "DATE", nullable: false),
-                    HoraAtendimento = table.Column<TimeSpan>(type: "TIME", nullable: false),
+                    HoraAtendimento = table.Column<TimeSpan>(type: "time", nullable: false),
                     IdPaciente = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdMedico = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
@@ -150,6 +151,33 @@ namespace webapi.healthclinic.Migrations
                         column: x => x.IdPaciente,
                         principalTable: "Paciente",
                         principalColumn: "IdPaciente",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Comentario",
+                columns: table => new
+                {
+                    IdComentario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Conteudo = table.Column<string>(type: "TEXT", nullable: false),
+                    Exibe = table.Column<bool>(type: "BIT", nullable: false),
+                    IdConsulta = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comentario", x => x.IdComentario);
+                    table.ForeignKey(
+                        name: "FK_Comentario_Consulta_IdConsulta",
+                        column: x => x.IdConsulta,
+                        principalTable: "Consulta",
+                        principalColumn: "IdConsulta",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Comentario_Usuario_IdUsuario",
+                        column: x => x.IdUsuario,
+                        principalTable: "Usuario",
+                        principalColumn: "IdUsuario",
                         onDelete: ReferentialAction.NoAction);
                 });
 
@@ -175,6 +203,16 @@ namespace webapi.healthclinic.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Administrador_IdUsuario",
                 table: "Administrador",
+                column: "IdUsuario");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comentario_IdConsulta",
+                table: "Comentario",
+                column: "IdConsulta");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comentario_IdUsuario",
+                table: "Comentario",
                 column: "IdUsuario");
 
             migrationBuilder.CreateIndex(
@@ -216,6 +254,9 @@ namespace webapi.healthclinic.Migrations
 
             migrationBuilder.DropTable(
                 name: "Clinica");
+
+            migrationBuilder.DropTable(
+                name: "Comentario");
 
             migrationBuilder.DropTable(
                 name: "Especialidade");

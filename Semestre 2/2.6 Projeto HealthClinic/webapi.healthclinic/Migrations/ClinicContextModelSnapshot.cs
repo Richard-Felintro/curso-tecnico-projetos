@@ -10,8 +10,8 @@ using webapi.healthclinic.Contexts;
 
 namespace webapi.healthclinic.Migrations
 {
-    [DbContext(typeof(_context))]
-    partial class _contextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(ClinicContext))]
+    partial class ClinicContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -45,10 +45,10 @@ namespace webapi.healthclinic.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<TimeSpan>("AtendimentoFim")
-                        .HasColumnType("TIME");
+                        .HasColumnType("time");
 
                     b.Property<TimeSpan>("AtendimentoInicio")
-                        .HasColumnType("TIME");
+                        .HasColumnType("time");
 
                     b.Property<string>("Endereco")
                         .IsRequired()
@@ -67,6 +67,34 @@ namespace webapi.healthclinic.Migrations
                     b.ToTable("Clinica");
                 });
 
+            modelBuilder.Entity("webapi.healthclinic.Domains.Comentario", b =>
+                {
+                    b.Property<Guid>("IdComentario")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Conteudo")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Exibe")
+                        .HasColumnType("BIT");
+
+                    b.Property<Guid>("IdConsulta")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdUsuario")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("IdComentario");
+
+                    b.HasIndex("IdConsulta");
+
+                    b.HasIndex("IdUsuario");
+
+                    b.ToTable("Comentario");
+                });
+
             modelBuilder.Entity("webapi.healthclinic.Domains.Consulta", b =>
                 {
                     b.Property<Guid>("IdConsulta")
@@ -77,7 +105,7 @@ namespace webapi.healthclinic.Migrations
                         .HasColumnType("DATE");
 
                     b.Property<TimeSpan>("HoraAtendimento")
-                        .HasColumnType("TIME");
+                        .HasColumnType("time");
 
                     b.Property<Guid>("IdMedico")
                         .HasColumnType("uniqueidentifier");
@@ -114,6 +142,10 @@ namespace webapi.healthclinic.Migrations
                     b.Property<Guid>("IdMedico")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CRM")
+                        .IsRequired()
+                        .HasColumnType("CHAR(8)");
 
                     b.Property<Guid>("IdUsuario")
                         .HasColumnType("uniqueidentifier");
@@ -212,6 +244,25 @@ namespace webapi.healthclinic.Migrations
                         .HasForeignKey("IdUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("webapi.healthclinic.Domains.Comentario", b =>
+                {
+                    b.HasOne("webapi.healthclinic.Domains.Consulta", "Consulta")
+                        .WithMany()
+                        .HasForeignKey("IdConsulta")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("webapi.healthclinic.Domains.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("IdUsuario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Consulta");
 
                     b.Navigation("Usuario");
                 });

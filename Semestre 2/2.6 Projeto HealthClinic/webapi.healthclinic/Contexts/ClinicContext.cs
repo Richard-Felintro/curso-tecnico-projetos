@@ -1,12 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 using webapi.healthclinic.Domains;
+using webapi.healthclinic.Utils;
 
 namespace webapi.healthclinic.Contexts
 {
     /// <summary>
     /// Contexto que conecta esta API com o banco
     /// </summary>
-    public class _context : DbContext
+    public class ClinicContext : DbContext
     {
         /// <summary>
         /// O DbSet referente a tabela de Administrador
@@ -44,6 +46,27 @@ namespace webapi.healthclinic.Contexts
         /// O DbSet referente a tabela de Usuario
         /// </summary>
         public DbSet<Usuario> Usuario { get; set; }
+
+        /// <summary>
+        /// O DbSet referente a tabela de Comentario
+        /// </summary>
+        public DbSet<Comentario> Comentario { get; set; }
+
+        /// <summary>
+        /// Determina que o TimeOnly será convertido para ser usado propriamente no campo
+        /// </summary>
+        /// <param name="builder"></param>
+        protected override void ConfigureConventions(ModelConfigurationBuilder builder)
+        {
+            base.ConfigureConventions(builder);
+            builder.Properties<DateOnly>()
+            .HaveConversion<Utils.DateOnlyConverter, DateOnlyComparer>()
+            .HaveColumnType("date");
+
+            builder.Properties<TimeOnly>()
+            .HaveConversion<Utils.TimeOnlyConverter, TimeOnlyComparer>()
+            .HaveColumnType("time");
+        }
 
         /// <summary>
         /// Determina os dados a serem utilizados no processo de configuração do banco de dado e Migration

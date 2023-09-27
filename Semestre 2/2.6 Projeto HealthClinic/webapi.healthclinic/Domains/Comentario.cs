@@ -15,6 +15,19 @@ namespace webapi.healthclinic.Domains
         [Key]
         public Guid IdComentario { get; set; } = Guid.NewGuid();
 
+        /// <summary>
+        /// Determina o corpo de texto do Comentario
+        /// </summary>
+        [Column(TypeName = "TEXT")]
+        [Required(ErrorMessage = "Conteúdo do comentário não informado")]
+        public string? Conteudo { get; set; }
+
+        /// <summary>
+        /// Determina se o comentário será exibido
+        /// </summary>
+        [Column(TypeName = "BIT")]
+        [Required(ErrorMessage = "Estado de exibição do comentário não informado")]
+        public bool Exibe { get; set; }
 
         /// <summary>
         /// Foreign key referente a consulta que na qual o comentário pertence

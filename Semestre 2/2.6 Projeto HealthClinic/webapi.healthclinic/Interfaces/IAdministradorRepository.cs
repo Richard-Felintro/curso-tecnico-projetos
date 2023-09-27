@@ -13,6 +13,7 @@ namespace webapi.healthclinic.Interfaces
         /// <param name="IdUsuario"></param>
         /// <returns>O Administrador achado</returns>
         public Administrador BuscarPorId(Guid IdUsuario);
+
         /// <summary>
         /// Cadastra o Administrador, utilizando o parametro IdUsuario para conectá-lo a um Usuario
         /// </summary>

@@ -16,7 +16,7 @@ namespace webapi.healthclinic.Interfaces
         public Usuario AtualizarPorId(Guid id, Usuario atualizar);
 
         /// <summary>
-        /// Busca um Usuario baseado em sua Senha & Email para saber se o login coincide
+        /// Busca um Usuario baseado em sua Senha e Email para saber se o login coincide
         /// </summary>
         /// <param name="email"></param>
         /// <param name="senha"></param>
