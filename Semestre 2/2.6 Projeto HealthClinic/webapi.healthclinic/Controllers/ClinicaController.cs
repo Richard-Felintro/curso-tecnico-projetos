@@ -34,7 +34,8 @@ namespace webapi.healthclinic.Controllers
             try
             {
                 _Repository.Cadastrar(clinica);
-                return Created("Nova clínica, " + clinica.RazaoSocial + " cadastrada com sucesso", clinica);
+                return Created("Nova clinica, " + clinica.RazaoSocial + " cadastrada com sucesso", clinica);
+                
             }
             catch (Exception erro)
             {
@@ -115,7 +116,9 @@ namespace webapi.healthclinic.Controllers
                 if (_Repository.BuscarPorId(id) != null)
                 {
                     _Repository.AtualizarPorId(id, clinica);
-                    return Created("Clínica, " + clinica.RazaoSocial + " editada com sucesso", clinica);
+                    return Created("Clinica, " + clinica.RazaoSocial + " editada com sucesso", clinica);
+
+                    //return Created("Nova clinica, " + clinica.RazaoSocial + " cadastrada com sucesso", clinica);
                 }
                 return NotFound("O Id informado não coincide com nenhuma clínica cadastrada");
             }

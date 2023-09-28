@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace webapi.healthclinic.Migrations
 {
     /// <inheritdoc />
-    public partial class db : Migration
+    public partial class tabas : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,8 +19,8 @@ namespace webapi.healthclinic.Migrations
                     RazaoSocial = table.Column<string>(type: "VARCHAR(128)", nullable: false),
                     NomeFantasia = table.Column<string>(type: "VARCHAR(128)", nullable: false),
                     Endereco = table.Column<string>(type: "VARCHAR(256)", nullable: false),
-                    AtendimentoInicio = table.Column<TimeSpan>(type: "time", nullable: false),
-                    AtendimentoFim = table.Column<TimeSpan>(type: "time", nullable: false)
+                    AtendimentoInicio = table.Column<TimeOnly>(type: "time", nullable: false),
+                    AtendimentoFim = table.Column<TimeOnly>(type: "time", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -132,8 +132,8 @@ namespace webapi.healthclinic.Migrations
                 columns: table => new
                 {
                     IdConsulta = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DataAtendimento = table.Column<DateTime>(type: "DATE", nullable: false),
-                    HoraAtendimento = table.Column<TimeSpan>(type: "time", nullable: false),
+                    DataAtendimento = table.Column<DateTime>(type: "date", nullable: false),
+                    HoraAtendimento = table.Column<TimeOnly>(type: "time", nullable: false),
                     IdPaciente = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdMedico = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },

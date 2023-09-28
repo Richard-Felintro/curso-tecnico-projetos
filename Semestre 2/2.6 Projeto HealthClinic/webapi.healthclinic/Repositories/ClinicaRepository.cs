@@ -1,4 +1,5 @@
-﻿using webapi.healthclinic.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using webapi.healthclinic.Contexts;
 using webapi.healthclinic.Domains;
 using webapi.healthclinic.Interfaces;
 
@@ -34,6 +35,8 @@ namespace webapi.healthclinic.Repositories
                     alvo.AtendimentoInicio = atualizar.AtendimentoInicio;
                     alvo.AtendimentoFim = atualizar.AtendimentoFim;
                     alvo.Endereco = alvo.Endereco;
+                    _Context.SaveChanges();
+                    return alvo;
                 }
 #pragma warning disable CS8603 // Possible null reference return.
                 return null;

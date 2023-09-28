@@ -59,18 +59,6 @@
             O DbSet referente a tabela de Comentario
             </summary>
         </member>
-        <member name="M:webapi.healthclinic.Contexts.ClinicContext.ConfigureConventions(Microsoft.EntityFrameworkCore.ModelConfigurationBuilder)">
-            <summary>
-            Determina que o TimeOnly será convertido para ser usado propriamente no campo
-            </summary>
-            <param name="builder"></param>
-        </member>
-        <member name="M:webapi.healthclinic.Contexts.ClinicContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
-            <summary>
-            Determina os dados a serem utilizados no processo de configuração do banco de dado e Migration
-            </summary>
-            <param name="optionsBuilder"></param>
-        </member>
         <member name="T:webapi.healthclinic.Controllers.ClinicaController">
             <summary>
             Controller responsável pelo CRUD da tabela Clinica
@@ -737,16 +725,16 @@
             </summary>
             <returns>Uma lista com todos os Usuario cadastrados</returns>
         </member>
-        <member name="T:webapi.healthclinic.Migrations.db">
+        <member name="T:webapi.healthclinic.Migrations.tabas">
             <inheritdoc />
         </member>
-        <member name="M:webapi.healthclinic.Migrations.db.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:webapi.healthclinic.Migrations.tabas.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:webapi.healthclinic.Migrations.db.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:webapi.healthclinic.Migrations.tabas.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:webapi.healthclinic.Migrations.db.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:webapi.healthclinic.Migrations.tabas.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:webapi.healthclinic.Repositories.ClinicaRepository">
@@ -810,16 +798,6 @@
             <param name="senhaForm"></param>
             <param name="senhaBanco"></param>
             <returns>True se elas coincidem, false se não</returns>
-        </member>
-        <member name="T:webapi.healthclinic.Utils.TimeOnlyConverter">
-            <summary>
-            Convertor de unidades que converte o TimeOnly para uma variável usável
-            </summary>
-        </member>
-        <member name="M:webapi.healthclinic.Utils.TimeOnlyConverter.#ctor">
-            <summary>
-            Método para quando o covnersor é ativado
-            </summary>
         </member>
         <member name="T:webapi.healthclinic.ViewModels.LoginViewModel">
             <summary>

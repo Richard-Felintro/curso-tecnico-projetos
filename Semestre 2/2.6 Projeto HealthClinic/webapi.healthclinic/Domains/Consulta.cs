@@ -26,9 +26,9 @@ namespace webapi.healthclinic.Domains
         /// <summary>
         /// O horário esperado do início da consulta
         /// </summary>
-        [Column(TypeName = "TIME")]
         [Required(ErrorMessage = "Hora de atendimento não determinada")]
-        public TimeOnly HoraAtendimento { get; set; } = new();
+        [Column(TypeName = "TIME")]
+        public TimeOnly HoraAtendimento { get; set; }
 
         /// <summary>
         /// Foreign key referente ao usuário que comparecerá a consulta

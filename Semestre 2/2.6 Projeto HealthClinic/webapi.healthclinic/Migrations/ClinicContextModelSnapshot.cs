@@ -44,11 +44,11 @@ namespace webapi.healthclinic.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<TimeSpan>("AtendimentoFim")
-                        .HasColumnType("time");
+                    b.Property<TimeOnly>("AtendimentoFim")
+                        .HasColumnType("TIME");
 
-                    b.Property<TimeSpan>("AtendimentoInicio")
-                        .HasColumnType("time");
+                    b.Property<TimeOnly>("AtendimentoInicio")
+                        .HasColumnType("TIME");
 
                     b.Property<string>("Endereco")
                         .IsRequired()
@@ -104,8 +104,8 @@ namespace webapi.healthclinic.Migrations
                     b.Property<DateTime>("DataAtendimento")
                         .HasColumnType("DATE");
 
-                    b.Property<TimeSpan>("HoraAtendimento")
-                        .HasColumnType("time");
+                    b.Property<TimeOnly>("HoraAtendimento")
+                        .HasColumnType("TIME");
 
                     b.Property<Guid>("IdMedico")
                         .HasColumnType("uniqueidentifier");
