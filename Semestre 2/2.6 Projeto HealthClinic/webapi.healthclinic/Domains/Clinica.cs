@@ -49,5 +49,13 @@ namespace webapi.healthclinic.Domains
         [Column(TypeName = "TIME")]
         [Required(ErrorMessage = "Horário do fim de atendimento não determinada")]
         public TimeOnly AtendimentoFim { get; set; }
+
+        /// <summary>
+        /// O CNPJ (Cadastro Nacional de Pessoas Jurídicas) da clínica em questão
+        /// </summary>
+        [Column(TypeName = "CHAR(14)")]
+        [Required(ErrorMessage = "CNPJ da clínica não determinadi")]
+        [StringLength(14, MinimumLength = 14)]
+        public string? CNPJ { get; set; }
     }
 }

@@ -22,5 +22,10 @@ namespace webapi.healthclinic.Domains
         [Column(TypeName = "VARCHAR(64)")]
         [Required(ErrorMessage = "Título do tipo de usuário não determinado.")]
         public string? Titulo { get; set; }
+
+        /// <summary>
+        /// Lista que contém todos os médicos com a respectiva especialidade
+        /// </summary>
+        public virtual ICollection<Medico> Medicos { get; set; } = new List<Medico>();
     }
 }

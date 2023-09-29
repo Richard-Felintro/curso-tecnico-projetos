@@ -2,28 +2,29 @@
 using webapi.healthclinic.Contexts;
 using webapi.healthclinic.Domains;
 using webapi.healthclinic.Interfaces;
+using webapi.healthclinic.ViewModels;
 
 namespace webapi.healthclinic.Repositories
 {
     /// <summary>
-    /// O repositório por trás da tabela de Clinica
+    /// O repositório por trás da tabela Clinica
     /// </summary>
     public class ClinicaRepository : IClinicaRepository
     {
-        private readonly ClinicContext _Context;
+        private readonly ClinicContext Contexto;
         /// <summary>
-        /// Quando um repositório é instanciado o _Context é declarado como um ClinicContext
+        /// Quando um repositório é instanciado o Contexto é declarado como um ClinicContext
         /// </summary>
         public ClinicaRepository()
         {
-            _Context = new();
+            Contexto = new();
         }
 
         /// <summary> Busca uma Clinica, comparando seu IdClinica com o parametro id, se esta clinica for achada, todos seus dados, exceto (IdClinica) serão subtituídos com os dados informado no parametro "atualizar" </summary> 
         /// <param name="id"></param>
         /// <param name="atualizar"></param>
         /// <returns> A Clinica atualizada </returns>
-        public Clinica AtualizarPorId(Guid id, Clinica atualizar)
+        public Clinica AtualizarPorId(Guid id, ClinicaViewModel atualizar)
         {
             try
             {
@@ -32,10 +33,10 @@ namespace webapi.healthclinic.Repositories
                 {
                     alvo.RazaoSocial = atualizar.RazaoSocial;
                     alvo.NomeFantasia = atualizar.NomeFantasia;
-                    alvo.AtendimentoInicio = atualizar.AtendimentoInicio;
-                    alvo.AtendimentoFim = atualizar.AtendimentoFim;
+                    alvo.AtendimentoInicio = TimeOnly.Parse(atualizar.AtendimentoInicio!);
+                    alvo.AtendimentoFim = TimeOnly.Parse(atualizar.AtendimentoFim!);
                     alvo.Endereco = alvo.Endereco;
-                    _Context.SaveChanges();
+                    Contexto.SaveChanges();
                     return alvo;
                 }
 #pragma warning disable CS8603 // Possible null reference return.
@@ -57,7 +58,7 @@ namespace webapi.healthclinic.Repositories
         {
             try
             {
-                Clinica clinica = _Context.Clinica.First(x => x.IdClinica == id);
+                Clinica clinica = Contexto.Clinica.First(x => x.IdClinica == id);
                 return clinica;
             }
             catch (Exception)
@@ -71,13 +72,22 @@ namespace webapi.healthclinic.Repositories
         /// </summary>
         /// <param name="cadastrado"></param>
         /// <returns> A Clinica cadastrada </returns>
-        public Clinica Cadastrar(Clinica cadastrado)
+        public Clinica Cadastrar(ClinicaViewModel cadastrado)
         {
             try
             {
-                _Context.Clinica.Add(cadastrado);
-                _Context.SaveChanges();
-                return cadastrado;
+                Clinica cli = new()
+                {
+                    CNPJ = cadastrado.CNPJ,
+                    RazaoSocial = cadastrado.RazaoSocial,
+                    NomeFantasia = cadastrado.NomeFantasia,
+                    Endereco = cadastrado.Endereco,
+                    AtendimentoInicio = TimeOnly.Parse(cadastrado.AtendimentoInicio!),
+                    AtendimentoFim = TimeOnly.Parse(cadastrado.AtendimentoFim!)
+                };
+                Contexto.Clinica.Add(cli);
+                Contexto.SaveChanges();
+                return cli;
             }
             catch (Exception)
             {
@@ -93,7 +103,7 @@ namespace webapi.healthclinic.Repositories
         {
             try
             {
-                _Context.Clinica.Remove(BuscarPorId(id));
+                Contexto.Clinica.Remove(BuscarPorId(id));
             }
             catch (Exception)
             {
@@ -107,7 +117,7 @@ namespace webapi.healthclinic.Repositories
         /// <returns> Uma lista com todas as Clinica cadastradas </returns>
         public List<Clinica> ListarTodos()
         {
-            return _Context.Clinica.ToList();
+            return Contexto.Clinica.ToList();
         }
     }
 }

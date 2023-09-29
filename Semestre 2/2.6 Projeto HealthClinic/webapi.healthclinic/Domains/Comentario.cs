@@ -44,13 +44,13 @@ namespace webapi.healthclinic.Domains
         /// <summary>
         /// Foreign key referente ao usuario que na qual o comentário pertence
         /// </summary>
-        [Required(ErrorMessage = "Usuario relacionada ao comentário não determinada")]
-        public Guid IdUsuario { get; set; }
+        [Required(ErrorMessage = "Paciente relacionado ao comentário não determinado")]
+        public Guid IdPaciente { get; set; }
 
         /// <summary>
         /// Usuario referenciado pela foreign key IdUsuario acima
         /// </summary>
-        [ForeignKey(nameof(IdUsuario))]
-        public Usuario? Usuario { get; set; }
+        [ForeignKey(nameof(IdPaciente))]
+        public Paciente? Paciente { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using webapi.healthclinic.Domains;
 using webapi.healthclinic.Repositories;
+using webapi.healthclinic.ViewModels;
 
 namespace webapi.healthclinic.Controllers
 {
@@ -14,7 +15,6 @@ namespace webapi.healthclinic.Controllers
     public class ClinicaController : ControllerBase
     {
         private ClinicaRepository _Repository { get; set; }
-
         /// <summary>
         /// Quando o controller é acionado uma ClinicaRepository é declarada para poder usar seus métodos
         /// </summary>
@@ -29,13 +29,12 @@ namespace webapi.healthclinic.Controllers
         /// <param name="clinica"></param>
         /// <returns> Se a ação suceder, Status Code 201 Created com uma mensagem em referência ao sucesso da operação e a Clinica cadastrada, se a operação falhar retorna Status Code 400 (Bad Request) com a mensagem de erro</returns>
         [HttpPost]
-        public IActionResult Post(Clinica clinica)
+        public IActionResult Post(ClinicaViewModel clinica)
         {
             try
             {
                 _Repository.Cadastrar(clinica);
-                return Created("Nova clinica, " + clinica.RazaoSocial + " cadastrada com sucesso", clinica);
-                
+                return Created($"Nova clinica cadastrada com sucesso", clinica);
             }
             catch (Exception erro)
             {
@@ -47,7 +46,7 @@ namespace webapi.healthclinic.Controllers
         /// Busca uma Clinica pelo seu IdClinica e a deleta da database se for encontrada
         /// </summary>
         /// <param name="id"></param>
-        /// <returns> Se a ação suceder, Status Code 200 Ok com uma mensagem em referência, se a operação falhar retorna Status Code 404 (Not Found) com a mensagem de erro </returns>
+        /// <returns> Se a ação suceder, Status Code 200 Ok com uma mensagem em referência, se a operação falhar retorna Status Code 404 (Not Found) com a mensagem de erro, se a ação falhar por outro erro retorna Status Code 400 com a mensagem de erro</returns>
         [HttpDelete]
         public IActionResult Delete(Guid id)
         {
@@ -57,13 +56,13 @@ namespace webapi.healthclinic.Controllers
                 if (clinica != null)
                 {
                     _Repository.DeletarPorID(id);
-                    return Ok("Clínica, " + clinica.RazaoSocial + " deletada com sucesso");
+                    return Ok($"Clinica deletada com sucesso");
                 }
                 return NotFound("O Id informado não coincide com nenhuma clínica cadastrada");
             }
-            catch (Exception)
+            catch (Exception erro)
             {
-                return NotFound("O Id informado não coincide com nenhuma clínica cadastrada");
+                return BadRequest(erro.Message);
             }
         }
 
@@ -97,11 +96,12 @@ namespace webapi.healthclinic.Controllers
                 Clinica clinica = _Repository.BuscarPorId(id);
                 return Ok(clinica);
             }
-            catch (Exception)
+            catch (Exception erro)
             {
-                return NotFound("O Id informado não coincide com nenhuma clínica cadastrada");
+                return BadRequest(erro.Message);
             }
         }
+
         /// <summary>
         /// Busca uma Clinica pelo seu IdClinica, se ela for encontrada a edita usando a Clinica parametro
         /// </summary>
@@ -109,22 +109,22 @@ namespace webapi.healthclinic.Controllers
         /// <param name="clinica"></param>
         /// <returns> Se a ação suceder, Status Code 201 Created com a Clinica edita e uma mensagem em referência ao sucesso da ação, se a operação falhar retorna Status Code 404 (Not Found) com sua mensagem de erro </returns>
         [HttpPatch("{id}")]
-        public IActionResult UpdateById(Guid id, Clinica clinica)
+        public IActionResult UpdateById(Guid id, ClinicaViewModel clinica)
         {
             try
             {
                 if (_Repository.BuscarPorId(id) != null)
                 {
                     _Repository.AtualizarPorId(id, clinica);
-                    return Created("Clinica, " + clinica.RazaoSocial + " editada com sucesso", clinica);
+                    return Created($"Clinica editada com sucesso", clinica);
 
                     //return Created("Nova clinica, " + clinica.RazaoSocial + " cadastrada com sucesso", clinica);
                 }
                 return NotFound("O Id informado não coincide com nenhuma clínica cadastrada");
             }
-            catch (Exception)
+            catch (Exception erro)
             {
-                return NotFound("O Id informado não coincide com nenhuma clínica cadastrada");
+                return BadRequest(erro.Message);
             }
         }
     }

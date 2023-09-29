@@ -48,5 +48,10 @@ namespace webapi.healthclinic.Domains
         /// </summary>
         [ForeignKey(nameof(IdTipoUsuario))]
         public TipoUsuario? TipoUsuario { get; set; }
+
+        /// <summary>
+        /// Lista que contém todos os comentários feitos por este usuário
+        /// </summary>
+        public virtual ICollection<Comentario> Comentarios { get; set; } = new List<Comentario>();
     }
 }

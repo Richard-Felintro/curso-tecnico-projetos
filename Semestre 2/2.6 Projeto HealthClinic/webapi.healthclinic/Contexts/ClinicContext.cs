@@ -12,10 +12,6 @@ namespace webapi.healthclinic.Contexts
     public class ClinicContext : DbContext
     {
         /// <summary>
-        /// O DbSet referente a tabela de Administrador
-        /// </summary>
-        public DbSet<Administrador> Administrador { get; set; }
-        /// <summary>
         /// O DbSet referente a tabela de Clinica
         /// </summary>
         public DbSet<Clinica> Clinica { get; set; }
@@ -55,6 +51,10 @@ namespace webapi.healthclinic.Contexts
         /// </summary>
         public DbSet<Comentario> Comentario { get; set; }
 
+        /// <summary>
+        /// Determina a string de conexão quando o banco é configurado
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=NOTE01-S15; Database = HealthClinic_Tarde; User Id = sa; Pwd = Senai@134; TrustServerCertificate = true;", x => x.UseDateOnlyTimeOnly());

@@ -20,6 +20,7 @@ namespace webapi.healthclinic.Domains
         /// </summary>
         [Column(TypeName = "CHAR(8)")]
         [Required(ErrorMessage = "CRM do médico não determinado")]
+        [StringLength(8, MinimumLength = 8)]
         public string? CRM { get; set; }
 
         /// <summary>

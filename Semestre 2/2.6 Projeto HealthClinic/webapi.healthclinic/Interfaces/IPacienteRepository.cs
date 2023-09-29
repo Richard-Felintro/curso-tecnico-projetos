@@ -12,7 +12,8 @@ namespace webapi.healthclinic.Interfaces
         /// </summary>
         /// <param name="IdUsuario"></param>
         /// <returns>O Paciente achado</returns>
-        public Paciente BuscarPorId(Guid IdUsuario);
+        public Paciente BuscarPorIdComUsuario(Guid IdUsuario);
+
         /// <summary>
         /// Cadastra o Paciente, utilizando o parametro IdUsuario para conectá-lo a um Usuario
         /// </summary>

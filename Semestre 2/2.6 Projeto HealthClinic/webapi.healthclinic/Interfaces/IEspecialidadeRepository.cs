@@ -1,4 +1,5 @@
 ﻿using webapi.healthclinic.Domains;
+using webapi.healthclinic.ViewModels;
 
 namespace webapi.healthclinic.Interfaces
 {
@@ -13,7 +14,7 @@ namespace webapi.healthclinic.Interfaces
         /// <param name="id"></param>
         /// <param name="atualizar"></param>
         /// <returns>O usuário atualizado</returns>
-        public Especialidade AtualizarPorId(Guid id, Especialidade atualizar);
+        public Especialidade AtualizarPorId(Guid id, EspecialidadeViewModel atualizar);
 
         /// <summary>
         /// Busca uma Especialidade, comparando seu IdEspecialidade com o parametro id
@@ -27,7 +28,7 @@ namespace webapi.healthclinic.Interfaces
         /// </summary>
         /// <param name="cadastrado"></param>
         /// <returns>O Especialidade cadastrado</returns>
-        public Especialidade Cadastrar(Especialidade cadastrado);
+        public Especialidade Cadastrar(EspecialidadeViewModel cadastrado);
 
         /// <summary>
         /// Busca uma Especialidade, comparando seu IdEspecialidade com o parametro id e a deleta da database

@@ -12,7 +12,7 @@ namespace webapi.healthclinic.Interfaces
         /// </summary>
         /// <param name="IdUsuario"></param>
         /// <returns>O Medico achado</returns>
-        public Medico BuscarPorId(Guid IdUsuario);
+        public Medico BuscarPorIdComUsuario(Guid IdUsuario);
         /// <summary>
         /// Cadastra o Medico, utilizando o parametro IdUsuario para conectá-lo a um Usuario
         /// </summary>
