@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace webapi.healthclinic.Migrations
 {
     /// <inheritdoc />
-    public partial class migrasv7 : Migration
+    public partial class migrasv9 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -70,7 +70,7 @@ namespace webapi.healthclinic.Migrations
                         column: x => x.IdTipoUsuario,
                         principalTable: "TipoUsuario",
                         principalColumn: "IdTipoUsuario",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,23 +79,31 @@ namespace webapi.healthclinic.Migrations
                 {
                     IdMedico = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CRM = table.Column<string>(type: "CHAR(8)", maxLength: 8, nullable: false),
-                    IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    EspecialidadeIdEspecialidade = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    IdEspecialidade = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdClinica = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Medico", x => x.IdMedico);
                     table.ForeignKey(
-                        name: "FK_Medico_Especialidade_EspecialidadeIdEspecialidade",
-                        column: x => x.EspecialidadeIdEspecialidade,
+                        name: "FK_Medico_Clinica_IdClinica",
+                        column: x => x.IdClinica,
+                        principalTable: "Clinica",
+                        principalColumn: "IdClinica",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Medico_Especialidade_IdEspecialidade",
+                        column: x => x.IdEspecialidade,
                         principalTable: "Especialidade",
-                        principalColumn: "IdEspecialidade");
+                        principalColumn: "IdEspecialidade",
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Medico_Usuario_IdUsuario",
                         column: x => x.IdUsuario,
                         principalTable: "Usuario",
                         principalColumn: "IdUsuario",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -113,7 +121,7 @@ namespace webapi.healthclinic.Migrations
                         column: x => x.IdUsuario,
                         principalTable: "Usuario",
                         principalColumn: "IdUsuario",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -134,7 +142,7 @@ namespace webapi.healthclinic.Migrations
                         column: x => x.IdMedico,
                         principalTable: "Medico",
                         principalColumn: "IdMedico",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Consulta_Paciente_IdPaciente",
                         column: x => x.IdPaciente,
@@ -162,7 +170,7 @@ namespace webapi.healthclinic.Migrations
                         column: x => x.IdConsulta,
                         principalTable: "Consulta",
                         principalColumn: "IdConsulta",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Comentario_Paciente_IdPaciente",
                         column: x => x.IdPaciente,
@@ -221,9 +229,14 @@ namespace webapi.healthclinic.Migrations
                 column: "IdPaciente");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Medico_EspecialidadeIdEspecialidade",
+                name: "IX_Medico_IdClinica",
                 table: "Medico",
-                column: "EspecialidadeIdEspecialidade");
+                column: "IdClinica");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Medico_IdEspecialidade",
+                table: "Medico",
+                column: "IdEspecialidade");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Medico_IdUsuario",
@@ -250,9 +263,6 @@ namespace webapi.healthclinic.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Clinica");
-
-            migrationBuilder.DropTable(
                 name: "Comentario");
 
             migrationBuilder.DropTable(
@@ -266,6 +276,9 @@ namespace webapi.healthclinic.Migrations
 
             migrationBuilder.DropTable(
                 name: "Paciente");
+
+            migrationBuilder.DropTable(
+                name: "Clinica");
 
             migrationBuilder.DropTable(
                 name: "Especialidade");

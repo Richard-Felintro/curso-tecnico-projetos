@@ -1,4 +1,5 @@
 ﻿using webapi.healthclinic.Domains;
+using webapi.healthclinic.ViewModels;
 
 namespace webapi.healthclinic.Interfaces
 {
@@ -13,11 +14,13 @@ namespace webapi.healthclinic.Interfaces
         /// <param name="IdUsuario"></param>
         /// <returns>O Medico achado</returns>
         public Medico BuscarPorIdComUsuario(Guid IdUsuario);
+
         /// <summary>
         /// Cadastra o Medico, utilizando o parametro IdUsuario para conectá-lo a um Usuario
         /// </summary>
-        /// <param name="IdUsuario"></param>
-        public void Cadastrar(Guid IdUsuario);
+        /// <param name="id"></param>
+        /// <param name="med"></param>
+        public void Cadastrar(Guid id, MedicoViewModel med);
 
         /// <summary>
         /// Cadastra o Medico, utilizando o parametro id para conectá-lo a um Usuario

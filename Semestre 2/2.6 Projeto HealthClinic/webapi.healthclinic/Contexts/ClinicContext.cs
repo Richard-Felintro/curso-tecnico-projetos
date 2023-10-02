@@ -17,6 +17,11 @@ namespace webapi.healthclinic.Contexts
         public DbSet<Clinica> Clinica { get; set; }
 
         /// <summary>
+        /// O DbSet referente a tabela de Comentario
+        /// </summary>
+        public DbSet<Comentario> Comentario { get; set; }
+
+        /// <summary>
         /// O DbSet referente a tabela de Consulta
         /// </summary>
         public DbSet<Consulta> Consulta { get; set; }
@@ -45,11 +50,6 @@ namespace webapi.healthclinic.Contexts
         /// O DbSet referente a tabela de Usuario
         /// </summary>
         public DbSet<Usuario> Usuario { get; set; }
-
-        /// <summary>
-        /// O DbSet referente a tabela de Comentario
-        /// </summary>
-        public DbSet<Comentario> Comentario { get; set; }
 
         /// <summary>
         /// Determina a string de conexão quando o banco é configurado

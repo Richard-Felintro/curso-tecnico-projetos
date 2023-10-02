@@ -142,7 +142,10 @@ namespace webapi.healthclinic.Migrations
                         .HasMaxLength(8)
                         .HasColumnType("CHAR(8)");
 
-                    b.Property<Guid?>("EspecialidadeIdEspecialidade")
+                    b.Property<Guid>("IdClinica")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("IdEspecialidade")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("IdUsuario")
@@ -150,7 +153,9 @@ namespace webapi.healthclinic.Migrations
 
                     b.HasKey("IdMedico");
 
-                    b.HasIndex("EspecialidadeIdEspecialidade");
+                    b.HasIndex("IdClinica");
+
+                    b.HasIndex("IdEspecialidade");
 
                     b.HasIndex("IdUsuario");
 
@@ -281,15 +286,27 @@ namespace webapi.healthclinic.Migrations
 
             modelBuilder.Entity("webapi.healthclinic.Domains.Medico", b =>
                 {
-                    b.HasOne("webapi.healthclinic.Domains.Especialidade", null)
+                    b.HasOne("webapi.healthclinic.Domains.Clinica", "Clinica")
+                        .WithMany()
+                        .HasForeignKey("IdClinica")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("webapi.healthclinic.Domains.Especialidade", "Especialidade")
                         .WithMany("Medicos")
-                        .HasForeignKey("EspecialidadeIdEspecialidade");
+                        .HasForeignKey("IdEspecialidade")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("webapi.healthclinic.Domains.Usuario", "Usuario")
                         .WithMany()
                         .HasForeignKey("IdUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Clinica");
+
+                    b.Navigation("Especialidade");
 
                     b.Navigation("Usuario");
                 });

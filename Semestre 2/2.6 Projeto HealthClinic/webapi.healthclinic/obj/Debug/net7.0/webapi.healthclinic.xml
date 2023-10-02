@@ -14,6 +14,11 @@
             O DbSet referente a tabela de Clinica
             </summary>
         </member>
+        <member name="P:webapi.healthclinic.Contexts.ClinicContext.Comentario">
+            <summary>
+            O DbSet referente a tabela de Comentario
+            </summary>
+        </member>
         <member name="P:webapi.healthclinic.Contexts.ClinicContext.Consulta">
             <summary>
             O DbSet referente a tabela de Consulta
@@ -47,11 +52,6 @@
         <member name="P:webapi.healthclinic.Contexts.ClinicContext.Usuario">
             <summary>
             O DbSet referente a tabela de Usuario
-            </summary>
-        </member>
-        <member name="P:webapi.healthclinic.Contexts.ClinicContext.Comentario">
-            <summary>
-            O DbSet referente a tabela de Comentario
             </summary>
         </member>
         <member name="M:webapi.healthclinic.Contexts.ClinicContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
@@ -149,6 +149,27 @@
             <param name="id"></param>
             <param name="espi"></param>
             <returns> Se a ação suceder, Status Code 201 Created com a Especialidade edita e uma mensagem em referência ao sucesso da ação, se a operação falhar retorna Status Code 404 (Not Found) com sua mensagem de erro </returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:webapi.healthclinic.Controllers.UsuarioController" -->
+        <member name="M:webapi.healthclinic.Controllers.UsuarioController.#ctor">
+            <summary>
+            Método construtor que declara todos os repositórios quando o Controller é iniciado
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.UsuarioController.PostPaciente(webapi.healthclinic.ViewModels.UsuarioViewModel)">
+            <summary>
+            Cadastra um novo Usuario do tipo Paciente
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.UsuarioController.PostMedico(webapi.healthclinic.ViewModels.MedicoViewModel)">
+            <summary>
+            Cadastra um novo Usuario do tipo Médico
+            </summary>
+            <param name="user"></param>
+            <param name="CRM"></param>
+            <returns></returns>
         </member>
         <member name="T:webapi.healthclinic.Domains.Clinica">
             <summary>
@@ -305,9 +326,29 @@
             O identificador único CRM de um profissional médico cadastrado
             </summary>
         </member>
-        <member name="P:webapi.healthclinic.Domains.Medico.IdUsuario">
+        <member name="P:webapi.healthclinic.Domains.Medico.IdEspecialidade">
             <summary>
             Foreign key referente ao usuário relacionado aos dados de Medico
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Medico.Especialidade">
+            <summary>
+            Especialidade referenciado pela foreign key IdEspecialidade acima
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Medico.IdClinica">
+            <summary>
+            Foreign key referente ao usuário relacionado aos dados de Medico
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Medico.Clinica">
+            <summary>
+            Clinica referenciado pela foreign key IdClinica acima
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.Domains.Medico.IdUsuario">
+            <summary>
+            Foreign key referente a especialidade relacionada aos dados de Medico
             </summary>
         </member>
         <member name="P:webapi.healthclinic.Domains.Medico.Usuario">
@@ -574,18 +615,19 @@
             Interface responsável pelos métodos do Medico
             </summary>
         </member>
-        <member name="M:webapi.healthclinic.Interfaces.IMedicoRepository.BuscarPorId(System.Guid)">
+        <member name="M:webapi.healthclinic.Interfaces.IMedicoRepository.BuscarPorIdComUsuario(System.Guid)">
             <summary>
             Busca um Medico baseado no parametro IdUsuario do Usuario no qual ele está relacionado
             </summary>
             <param name="IdUsuario"></param>
             <returns>O Medico achado</returns>
         </member>
-        <member name="M:webapi.healthclinic.Interfaces.IMedicoRepository.Cadastrar(System.Guid)">
+        <member name="M:webapi.healthclinic.Interfaces.IMedicoRepository.Cadastrar(System.Guid,webapi.healthclinic.ViewModels.MedicoViewModel)">
             <summary>
             Cadastra o Medico, utilizando o parametro IdUsuario para conectá-lo a um Usuario
             </summary>
-            <param name="IdUsuario"></param>
+            <param name="id"></param>
+            <param name="med"></param>
         </member>
         <member name="M:webapi.healthclinic.Interfaces.IMedicoRepository.Deletar(System.Guid)">
             <summary>
@@ -598,7 +640,7 @@
             Interface responsável pelos métodos do Paciente
             </summary>
         </member>
-        <member name="M:webapi.healthclinic.Interfaces.IPacienteRepository.BuscarPorId(System.Guid)">
+        <member name="M:webapi.healthclinic.Interfaces.IPacienteRepository.BuscarPorIdComUsuario(System.Guid)">
             <summary>
             Busca um Paciente baseado no parametro IdUsuario do Usuario no qual ele está relacionado
             </summary>
@@ -700,7 +742,7 @@
             Interface responsável pelos métodos do Usuario
             </summary>
         </member>
-        <member name="M:webapi.healthclinic.Interfaces.IUsuarioRepository.AtualizarPorId(System.Guid,webapi.healthclinic.Domains.Usuario)">
+        <member name="M:webapi.healthclinic.Interfaces.IUsuarioRepository.AtualizarPorId(System.Guid,webapi.healthclinic.ViewModels.UsuarioViewModel)">
             <summary>
             Busca um Usuario, comparando seu IdUsuario com o parametro id e o edita usando o parametro 'atualizar' para determinar seus novos parametros
             </summary>
@@ -723,12 +765,21 @@
             <param name="id"></param>
             <returns>O Usuario buscado</returns>
         </member>
-        <member name="M:webapi.healthclinic.Interfaces.IUsuarioRepository.Cadastrar(webapi.healthclinic.Domains.Usuario)">
+        <member name="M:webapi.healthclinic.Interfaces.IUsuarioRepository.CadastrarUsuario(webapi.healthclinic.ViewModels.UsuarioViewModel,System.String)">
             <summary>
-            Cadastra o Usuario "cadastrado" e o adiciona ao banco de dados
+            Cadastra um novo usuário não Medico, utilizando um ViewModel e seu tipo
             </summary>
             <param name="cadastrado"></param>
-            <returns>O Usuario cadastrado</returns>
+            <param name="UserType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:webapi.healthclinic.Interfaces.IUsuarioRepository.CadastrarMedico(webapi.healthclinic.ViewModels.MedicoViewModel)">
+            <summary>
+            Cadastra um novo usuário do tipo Medico, utilizando um ViewModel e seu tipo
+            </summary>
+            <param name="cadastrado"></param>
+            <param name="UserType"></param>
+            <returns></returns>
         </member>
         <member name="M:webapi.healthclinic.Interfaces.IUsuarioRepository.DeletarPorID(System.Guid)">
             <summary>
@@ -742,16 +793,16 @@
             </summary>
             <returns>Uma lista com todos os Usuario cadastrados</returns>
         </member>
-        <member name="T:webapi.healthclinic.Migrations.migrasv7">
+        <member name="T:webapi.healthclinic.Migrations.migrasv9">
             <inheritdoc />
         </member>
-        <member name="M:webapi.healthclinic.Migrations.migrasv7.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:webapi.healthclinic.Migrations.migrasv9.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:webapi.healthclinic.Migrations.migrasv7.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:webapi.healthclinic.Migrations.migrasv9.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:webapi.healthclinic.Migrations.migrasv7.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:webapi.healthclinic.Migrations.migrasv9.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:webapi.healthclinic.Repositories.ClinicaRepository">
@@ -761,7 +812,7 @@
         </member>
         <member name="M:webapi.healthclinic.Repositories.ClinicaRepository.#ctor">
             <summary>
-            Quando um repositório é instanciado o _Context é declarado como um ClinicContext
+            Quando um repositório é instanciado o Contexto é declarado como um ClinicContext
             </summary>
         </member>
         <member name="M:webapi.healthclinic.Repositories.ClinicaRepository.AtualizarPorId(System.Guid,webapi.healthclinic.ViewModels.ClinicaViewModel)">
@@ -803,7 +854,7 @@
         </member>
         <member name="M:webapi.healthclinic.Repositories.EspecialidadeRepository.#ctor">
             <summary>
-            Quando um repositório é instanciado o _Context é declarado como um ClinicContext
+            Quando um repositório é instanciado o Contexto é declarado como um ClinicContext
             </summary>
         </member>
         <member name="M:webapi.healthclinic.Repositories.EspecialidadeRepository.AtualizarPorId(System.Guid,webapi.healthclinic.ViewModels.EspecialidadeViewModel)">
@@ -837,6 +888,92 @@
             Transforma a tabela de Especialidade em uma List de Especialidade e a retorna
             </summary>
             <returns> Uma lista com todas as Especialidade cadastradas </returns>
+        </member>
+        <member name="T:webapi.healthclinic.Repositories.MedicoRepository">
+            <summary>
+            O repositório por trás da tabela Medico
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.MedicoRepository.#ctor">
+            <summary>
+            Quando um repositório é instanciado o Contexto é declarado como um ClinicContext
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.MedicoRepository.BuscarPorIdComUsuario(System.Guid)">
+            <summary>
+            Buscar as informações de Medico de um usuário utilizando o IdUsuario
+            </summary>
+            <param name="IdUsuario"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.MedicoRepository.Cadastrar(System.Guid,webapi.healthclinic.ViewModels.MedicoViewModel)">
+            <summary>
+            Cadastra um novo usuário com a ForeignKey do Usuario
+            </summary>
+            <param name="id"></param>
+            <param name="med"></param>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.MedicoRepository.Deletar(System.Guid)">
+            <summary>
+            Deleta as informações de Medico de um usuário usando seu IdUsuario
+            </summary>
+            <param name="IdUsuario"></param>
+        </member>
+        <member name="T:webapi.healthclinic.Repositories.PacienteRepository">
+            <summary>
+            O repositório por trás da tabela Paciente
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.PacienteRepository.#ctor">
+            <summary>
+            Quando um repositório é instanciado o Contexto é declarado como um ClinicContext
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.PacienteRepository.BuscarPorIdComUsuario(System.Guid)">
+            <summary>
+            Buscar as informações de paciente de um usuário utilizando o IdUsuario
+            </summary>
+            <param name="IdUsuario"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.PacienteRepository.Cadastrar(System.Guid)">
+            <summary>
+            Cadastra um novo usuário com a ForeignKey do Usuario
+            </summary>
+            <param name="IdUsuario"></param>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.PacienteRepository.Deletar(System.Guid)">
+            <summary>
+            Deleta as informações de Paciente de um usuário usando seu IdUsuario
+            </summary>
+            <param name="IdUsuario"></param>
+        </member>
+        <member name="T:webapi.healthclinic.Repositories.UsuarioRepository">
+            <summary>
+            O repositório por trás da tabela Usuário
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.UsuarioRepository.#ctor">
+            <summary>
+            Quando um repositório é instanciado o Contexto é declarado como um ClinicContext
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.UsuarioRepository.CadastrarMedico(webapi.healthclinic.ViewModels.MedicoViewModel)">
+            <summary>
+            Cadastra um novo Usuario do tipo Médico
+            </summary>
+            <param name="cadastrado"></param>
+            <returns>O Usuario cadastrado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.UsuarioRepository.CadastrarUsuario(webapi.healthclinic.ViewModels.UsuarioViewModel,System.String)">
+            <summary>
+            Cadastra um novo Usuario do tipo Paciente ou Administrador
+            </summary>
+            <param name="cadastrado"></param>
+            <param name="UserType"></param>
+            <returns>O Usuario cadastrado</returns>
         </member>
         <member name="T:webapi.healthclinic.Utils.Criptografia">
             <summary>
@@ -916,6 +1053,61 @@
         <member name="P:webapi.healthclinic.ViewModels.LoginViewModel.Senha">
             <summary>
             O senha a ser informado na ViewModel para se logar
+            </summary>
+        </member>
+        <member name="T:webapi.healthclinic.ViewModels.MedicoViewModel">
+            <summary>
+            ViewModel contendo os dados relevantes para o cadastro de um médico não médico
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.ViewModels.MedicoViewModel.Nome">
+            <summary>
+            Nome do médico sendo cadastrado
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.ViewModels.MedicoViewModel.Email">
+            <summary>
+            Email do médico sendo cadastrado
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.ViewModels.MedicoViewModel.Senha">
+            <summary>
+            Senha do médico sendo cadastrado
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.ViewModels.MedicoViewModel.CRM">
+            <summary>
+            CRM do médico sendo cadastrado
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.ViewModels.MedicoViewModel.IdEspecialidade">
+            <summary>
+            IdEspecialidade do médico sendo cadastrado
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.ViewModels.MedicoViewModel.IdClinica">
+            <summary>
+            IdClinica do médico sendo cadastrado
+            </summary>
+        </member>
+        <member name="T:webapi.healthclinic.ViewModels.UsuarioViewModel">
+            <summary>
+            ViewModel contendo os dados relevantes para o cadastro de um usuário não médico
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.ViewModels.UsuarioViewModel.Nome">
+            <summary>
+            Nome do usuário sendo cadastrado
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.ViewModels.UsuarioViewModel.Email">
+            <summary>
+            Email do usuário sendo cadastrado
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.ViewModels.UsuarioViewModel.Senha">
+            <summary>
+            Senha do usuário sendo cadastrado
             </summary>
         </member>
     </members>

@@ -26,6 +26,30 @@ namespace webapi.healthclinic.Domains
         /// <summary>
         /// Foreign key referente ao usuário relacionado aos dados de Medico
         /// </summary>
+        [Required(ErrorMessage = "Especialidade relacionada aos dados de médico não determinados")]
+        public Guid IdEspecialidade { get; set; }
+
+        /// <summary>
+        /// Especialidade referenciado pela foreign key IdEspecialidade acima
+        /// </summary>
+        [ForeignKey(nameof(IdEspecialidade))]
+        public Especialidade? Especialidade { get; set; }
+
+        /// <summary>
+        /// Foreign key referente ao usuário relacionado aos dados de Medico
+        /// </summary>
+        [Required(ErrorMessage = "Clinica relacionada aos dados de médico não determinados")]
+        public Guid IdClinica { get; set; }
+
+        /// <summary>
+        /// Clinica referenciado pela foreign key IdClinica acima
+        /// </summary>
+        [ForeignKey(nameof(IdClinica))]
+        public Clinica? Clinica { get; set; }
+
+        /// <summary>
+        /// Foreign key referente a especialidade relacionada aos dados de Medico
+        /// </summary>
         [Required(ErrorMessage = "Usuário relacionado aos dados de médico não determinados")]
         public Guid IdUsuario { get; set; }
 

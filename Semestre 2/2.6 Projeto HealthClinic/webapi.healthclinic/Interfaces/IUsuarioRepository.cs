@@ -1,4 +1,5 @@
 ﻿using webapi.healthclinic.Domains;
+using webapi.healthclinic.ViewModels;
 
 namespace webapi.healthclinic.Interfaces
 {
@@ -13,7 +14,7 @@ namespace webapi.healthclinic.Interfaces
         /// <param name="id"></param>
         /// <param name="atualizar"></param>
         /// <returns>O usuário atualizado</returns>
-        public Usuario AtualizarPorId(Guid id, Usuario atualizar);
+        public Usuario AtualizarPorId(Guid id, UsuarioViewModel atualizar);
 
         /// <summary>
         /// Busca um Usuario baseado em sua Senha e Email para saber se o login coincide
@@ -31,11 +32,20 @@ namespace webapi.healthclinic.Interfaces
         public Usuario BuscarPorId(Guid id);
 
         /// <summary>
-        /// Cadastra o Usuario "cadastrado" e o adiciona ao banco de dados
+        /// Cadastra um novo usuário não Medico, utilizando um ViewModel e seu tipo
         /// </summary>
         /// <param name="cadastrado"></param>
-        /// <returns>O Usuario cadastrado</returns>
-        public Usuario Cadastrar(Usuario cadastrado);
+        /// <param name="UserType"></param>
+        /// <returns></returns>
+        public Usuario CadastrarUsuario(UsuarioViewModel cadastrado, string UserType);
+
+        /// <summary>
+        /// Cadastra um novo usuário do tipo Medico, utilizando um ViewModel e seu tipo
+        /// </summary>
+        /// <param name="cadastrado"></param>
+        /// <param name="UserType"></param>
+        /// <returns></returns>
+        public Usuario CadastrarMedico(MedicoViewModel cadastrado);
 
         /// <summary>
         /// Busca um Usuario, comparando seu IdUsuario com o parametro id e o deleta da database
@@ -44,9 +54,9 @@ namespace webapi.healthclinic.Interfaces
         public void DeletarPorID(Guid id);
 
         /// <summary>
-        /// Transforma a tabela de Usuario em uma List de Usuario e a retorna
+        /// Transforma a tabela de todos os Usuario tipo Medico
         /// </summary>
-        /// <returns>Uma lista com todos os Usuario cadastrados</returns>
-        public List<Usuario> ListarTodos();
+        /// <returns>Uma lista com todos os Usuario tipo Medico cadastrados</returns>
+        //public List<Usuario> ListarMedicos();
     }
 }

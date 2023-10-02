@@ -17,6 +17,7 @@ namespace webapi.healthclinic.ViewModels
         /// O senha a ser informado na ViewModel para se logar
         /// </summary>
         [Required(ErrorMessage = "Senha da ViewModel não determinado")]
+        [StringLength(32, MinimumLength = 8)]
         public string? Senha { get; set; }
     }
 }
