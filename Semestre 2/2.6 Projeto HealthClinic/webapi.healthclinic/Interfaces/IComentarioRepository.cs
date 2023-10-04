@@ -1,4 +1,5 @@
 ﻿using webapi.healthclinic.Domains;
+using webapi.healthclinic.ViewModels;
 
 namespace webapi.healthclinic.Interfaces
 {
@@ -13,7 +14,7 @@ namespace webapi.healthclinic.Interfaces
         /// <param name="id"></param>
         /// <param name="atualizar"></param>
         /// <returns>O usuário atualizado</returns>
-        public Comentario AtualizarPorId(Guid id, Comentario atualizar);
+        public Comentario AtualizarPorId(Guid id, ComentarioViewModel atualizar);
 
         /// <summary>
         /// Busca um Comentario, comparando seu IdComentario com o parametro id
@@ -27,7 +28,7 @@ namespace webapi.healthclinic.Interfaces
         /// </summary>
         /// <param name="cadastrado"></param>
         /// <returns>O Comentario cadastrado</returns>
-        public Comentario Cadastrar(Comentario cadastrado);
+        public Comentario Cadastrar(ComentarioViewModel cadastrado);
 
         /// <summary>
         /// Busca um Comentario, comparando seu IdComentario com o parametro id e o deleta da database

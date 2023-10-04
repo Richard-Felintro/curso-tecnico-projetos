@@ -1,4 +1,5 @@
 ﻿using webapi.healthclinic.Domains;
+using webapi.healthclinic.ViewModels;
 
 namespace webapi.healthclinic.Interfaces
 {
@@ -13,7 +14,7 @@ namespace webapi.healthclinic.Interfaces
         /// <param name="id"></param>
         /// <param name="atualizar"></param>
         /// <returns>O usuário atualizado</returns>
-        public Prontuario AtualizarPorId(Guid id, Prontuario atualizar);
+        public Prontuario AtualizarPorId(Guid id, ProntuarioViewModel atualizar);
 
         /// <summary>
         /// Busca um Prontuario, comparando seu IdProntuario com o parametro id
@@ -27,7 +28,7 @@ namespace webapi.healthclinic.Interfaces
         /// </summary>
         /// <param name="cadastrado"></param>
         /// <returns>O Prontuario cadastrado</returns>
-        public Prontuario Cadastrar(Prontuario cadastrado);
+        public Prontuario Cadastrar(ProntuarioViewModel cadastrado);
 
         /// <summary>
         /// Busca um Prontuario, comparando seu IdProntuario com o parametro id e o deleta da database

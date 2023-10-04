@@ -105,6 +105,51 @@
             <param name="clinica"></param>
             <returns> Se a ação suceder, Status Code 201 Created com a Clinica edita e uma mensagem em referência ao sucesso da ação, se a operação falhar retorna Status Code 404 (Not Found) com sua mensagem de erro </returns>
         </member>
+        <member name="T:webapi.healthclinic.Controllers.ConsultaController">
+            <summary>
+            Controller resposável pelo CRUD de Consultas
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.ConsultaController.#ctor">
+            <summary>
+            Declara o _Repository como uma ConsultaController quando o Controller é chamado
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.ConsultaController.Post(webapi.healthclinic.ViewModels.ConsultaViewModel)">
+            <summary>
+            Cadastra a Consulta no parametro e o adiciona ao banco de dados
+            </summary>
+            <param name="espi"></param>
+            <returns> Se a ação suceder, Status Code 201 Created com uma mensagem em referência ao sucesso da operação e a Consulta cadastrada, se a operação falhar retorna Status Code 400 (Bad Request) com a mensagem de erro</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.ConsultaController.Delete(System.Guid)">
+            <summary>
+            Busca uma Clinica pelo seu IdClinica e a deleta da database se for encontrada
+            </summary>
+            <param name="id"></param>
+            <returns> Se a ação suceder, Status Code 200 Ok com uma mensagem em referência, se a operação falhar retorna Status Code 404 (Not Found) com a mensagem de erro, se a ação falhar por outro erro retorna Status Code 400 com a mensagem de erro</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.ConsultaController.GetAll">
+            <summary>
+            Transforma a tabela Consulta em uma lista e a retorna
+            </summary>
+            <returns> Se suceder, retorna um Status Code 200 Ok com a lista que inclui a tabela Clinica, se a operação falhar retorna Status Code 400 (Bad Request) com a mensagem de erro </returns>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.ConsultaController.GetById(System.Guid)">
+            <summary>
+            Busca uma Consulta pelo seu IdConsulta
+            </summary>
+            <param name="id"></param>
+            <returns> Se a ação suceder, Status Code 200 Ok com a Consulta encontrada, se a operação falhar retorna Status Code 404 (Not Found) com a mensagem de erro </returns>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.ConsultaController.UpdateById(System.Guid,webapi.healthclinic.ViewModels.ConsultaViewModel)">
+            <summary>
+            Busca uma Consulta pelo seu IdConsulta, se ela for encontrada a edita usando a Consulta parametro
+            </summary>
+            <param name="id"></param>
+            <param name="espi"></param>
+            <returns> Se a ação suceder, Status Code 201 Created com a Consulta edita e uma mensagem em referência ao sucesso da ação, se a operação falhar retorna Status Code 404 (Not Found) com sua mensagem de erro </returns>
+        </member>
         <member name="T:webapi.healthclinic.Controllers.EspecialidadeController">
             <summary>
             Controller resposável pelo CRUD de especialidades
@@ -150,26 +195,87 @@
             <param name="espi"></param>
             <returns> Se a ação suceder, Status Code 201 Created com a Especialidade edita e uma mensagem em referência ao sucesso da ação, se a operação falhar retorna Status Code 404 (Not Found) com sua mensagem de erro </returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:webapi.healthclinic.Controllers.UsuarioController" -->
-        <member name="M:webapi.healthclinic.Controllers.UsuarioController.#ctor">
+        <member name="T:webapi.healthclinic.Controllers.LoginController">
+            <summary>
+            Controller resposável pelo login
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.LoginController.#ctor">
+            <summary>
+            Declara o repositório quando o Controller é utilizado
+            </summary>
+        </member>
+        <member name="T:webapi.healthclinic.Controllers.MedicoController">
+            <summary>
+            Controller responsável pela gerenciação de Usuarios tipo Medico
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.MedicoController.#ctor">
             <summary>
             Método construtor que declara todos os repositórios quando o Controller é iniciado
             </summary>
         </member>
-        <member name="M:webapi.healthclinic.Controllers.UsuarioController.PostPaciente(webapi.healthclinic.ViewModels.UsuarioViewModel)">
-            <summary>
-            Cadastra um novo Usuario do tipo Paciente
-            </summary>
-            <param name="user"></param>
-            <returns></returns>
-        </member>
-        <member name="M:webapi.healthclinic.Controllers.UsuarioController.PostMedico(webapi.healthclinic.ViewModels.MedicoViewModel)">
+        <member name="M:webapi.healthclinic.Controllers.MedicoController.PostMedico(webapi.healthclinic.ViewModels.MedicoViewModel)">
             <summary>
             Cadastra um novo Usuario do tipo Médico
             </summary>
             <param name="user"></param>
-            <param name="CRM"></param>
-            <returns></returns>
+            <returns> Se a ação suceder, Status Code 201 Created com uma mensagem em referência ao sucesso da operação e o Medico cadastrada, se a operação falhar retorna Status Code 400 (Bad Request) com a mensagem de erro</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.MedicoController.DeleteMedico(System.Guid)">
+            <summary>
+            Busca uma Clinica pelo seu IdClinica e a deleta da database se for encontrada
+            </summary>
+            <param name="id"></param>
+            <returns> Se a ação suceder, Status Code 200 Ok com uma mensagem em referência, se a operação falhar retorna Status Code 404 (Not Found) com a mensagem de erro, se a ação falhar por outro erro retorna Status Code 400 com a mensagem de erro</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.MedicoController.UpdateMedico(webapi.healthclinic.ViewModels.UsuarioViewModel,System.Guid)">
+            <summary>
+            Busca um Medico e o deleta da database se for encontrado
+            </summary>
+            <param name="id"></param>
+            <returns> Se a ação suceder, Status Code 200 Ok com uma mensagem em referência, se a operação falhar retorna Status Code 404 (Not Found) com a mensagem de erro, se a ação falhar por outro erro retorna Status Code 400 com a mensagem de erro</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.MedicoController.GetMedico(System.Guid)">
+            <summary>
+            Cadastra o Medico no parametro e o adiciona ao banco de dados
+            </summary>
+            <param name="id"></param>
+            <returns> Se a ação suceder, Status Code 201 Created com uma mensagem em referência ao sucesso da operação e o Medico cadastrada, se a operação falhar retorna Status Code 400 (Bad Request) com a mensagem de erro</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:webapi.healthclinic.Controllers.PacienteController" -->
+        <member name="M:webapi.healthclinic.Controllers.PacienteController.#ctor">
+            <summary>
+            Método construtor que declara todos os repositórios quando o Controller é iniciado
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.PacienteController.PostPaciente(webapi.healthclinic.ViewModels.UsuarioViewModel)">
+            <summary>
+            Cadastra um novo Usuario do tipo Paciente
+            </summary>
+            <param name="user"></param>
+            <returns> Se a ação suceder, Status Code 201 Created com uma mensagem em referência ao sucesso da operação e o Usuario cadastrada, se a operação falhar retorna Status Code 400 (Bad Request) com a mensagem de erro</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.PacienteController.DeletePaciente(System.Guid)">
+            <summary>
+            Busca uma Clinica pelo seu IdClinica e a deleta da database se for encontrada
+            </summary>
+            <param name="id"></param>
+            <returns> Se a ação suceder, Status Code 200 Ok com uma mensagem em referência, se a operação falhar retorna Status Code 404 (Not Found) com a mensagem de erro, se a ação falhar por outro erro retorna Status Code 400 com a mensagem de erro</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.PacienteController.UpdatePaciente(webapi.healthclinic.ViewModels.UsuarioViewModel,System.Guid)">
+            <summary>
+            Busca um Paciente e o deleta da database se for encontrado
+            </summary>
+            <param name="id"></param>
+            <returns> Se a ação suceder, Status Code 200 Ok com uma mensagem em referência, se a operação falhar retorna Status Code 404 (Not Found) com a mensagem de erro, se a ação falhar por outro erro retorna Status Code 400 com a mensagem de erro</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Controllers.PacienteController.GetPaciente(System.Guid)">
+            <summary>
+            Cadastra o Paciente no parametro e o adiciona ao banco de dados
+            </summary>
+            <param name="id"></param>
+            <returns> Se a ação suceder, Status Code 201 Created com uma mensagem em referência ao sucesso da operação e o Paciente cadastrada, se a operação falhar retorna Status Code 400 (Bad Request) com a mensagem de erro</returns>
         </member>
         <member name="T:webapi.healthclinic.Domains.Clinica">
             <summary>
@@ -537,7 +643,7 @@
             Interface responsável pelos métodos da Consulta
             </summary>
         </member>
-        <member name="M:webapi.healthclinic.Interfaces.IConsultaRepository.AtualizarPorId(System.Guid,webapi.healthclinic.Domains.Consulta)">
+        <member name="M:webapi.healthclinic.Interfaces.IConsultaRepository.AtualizarPorId(System.Guid,webapi.healthclinic.ViewModels.ConsultaViewModel)">
             <summary>
             Busca uma Consulta, comparando seu IdConsulta com o parametro id e o edita usando o parametro 'atualizar' para determinar seus novos parametros
             </summary>
@@ -552,7 +658,7 @@
             <param name="id"></param>
             <returns>O Consulta buscado</returns>
         </member>
-        <member name="M:webapi.healthclinic.Interfaces.IConsultaRepository.Cadastrar(webapi.healthclinic.Domains.Consulta)">
+        <member name="M:webapi.healthclinic.Interfaces.IConsultaRepository.Cadastrar(webapi.healthclinic.ViewModels.ConsultaViewModel)">
             <summary>
             Cadastra a Consulta "cadastrado" e o adiciona ao banco de dados
             </summary>
@@ -787,12 +893,6 @@
             </summary>
             <param name="id"></param>
         </member>
-        <member name="M:webapi.healthclinic.Interfaces.IUsuarioRepository.ListarTodos">
-            <summary>
-            Transforma a tabela de Usuario em uma List de Usuario e a retorna
-            </summary>
-            <returns>Uma lista com todos os Usuario cadastrados</returns>
-        </member>
         <member name="T:webapi.healthclinic.Migrations.migrasv9">
             <inheritdoc />
         </member>
@@ -846,6 +946,48 @@
             Transforma a tabela de Clinica em uma List de Clinica e a retorna
             </summary>
             <returns> Uma lista com todas as Clinica cadastradas </returns>
+        </member>
+        <member name="T:webapi.healthclinic.Repositories.ConsultaRepository">
+            <summary>
+            O repositório por trás da tabela Consulta
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.ConsultaRepository.#ctor">
+            <summary>
+            Quando um repositório é instanciado o Contexto é declarado como um ClinicContext
+            </summary>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.ConsultaRepository.AtualizarPorId(System.Guid,webapi.healthclinic.ViewModels.ConsultaViewModel)">
+            <summary> Busca uma Consulta, comparando seu IdConsulta com o parametro id, se esta Consulta for achada, todos seus dados, exceto (IdConsulta) serão subtituídos com os dados informado no parametro "atualizar" </summary> 
+            <param name="id"></param>
+            <param name="atualizar"></param>
+            <returns> A Consulta atualizada </returns>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.ConsultaRepository.BuscarPorId(System.Guid)">
+            <summary>
+            Busca uma Consulta, comparando seu IdConsulta com o parametro id
+            </summary>
+            <param name="id"></param>
+            <returns> A Consulta buscada </returns>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.ConsultaRepository.Cadastrar(webapi.healthclinic.ViewModels.ConsultaViewModel)">
+            <summary>
+            Cadastra uma nova Consulta com os dados do parametro cadastrado
+            </summary>
+            <param name="cadastrado"></param>
+            <returns> A Consulta cadastrada </returns>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.ConsultaRepository.DeletarPorID(System.Guid)">
+            <summary>
+            Busca uma Consulta pelo seu Id e a deleta da database se for encontrada
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.ConsultaRepository.ListarTodos">
+            <summary>
+            Transforma a tabela de Consulta em uma List de Consulta e a retorna
+            </summary>
+            <returns> Uma lista com todas as Consulta cadastradas </returns>
         </member>
         <member name="T:webapi.healthclinic.Repositories.EspecialidadeRepository">
             <summary>
@@ -960,6 +1102,29 @@
             Quando um repositório é instanciado o Contexto é declarado como um ClinicContext
             </summary>
         </member>
+        <member name="M:webapi.healthclinic.Repositories.UsuarioRepository.AtualizarPorId(System.Guid,webapi.healthclinic.ViewModels.UsuarioViewModel)">
+            <summary>
+            Busca um Usuario, comparando seu IdUsuario com o parametro id e o edita usando o parametro 'atualizar' para determinar seus novos parametros
+            </summary>
+            <param name="id"></param>
+            <param name="atualizar"></param>
+            <returns>O usuário atualizado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.UsuarioRepository.BuscarPorEmailESenha(System.String,System.String)">
+            <summary>
+            Busca um Usuario baseado em sua Senha e Email para saber se o login coincide
+            </summary>
+            <param name="email"></param>
+            <param name="senha"></param>
+            <returns>O Usuario que coincide com o email e senha, nulo se nenhum for achado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.UsuarioRepository.BuscarPorId(System.Guid)">
+            <summary>
+            Busca um Usuario, comparando seu IdUsuario com o parametro id
+            </summary>
+            <param name="id"></param>
+            <returns>O Usuario buscado</returns>
+        </member>
         <member name="M:webapi.healthclinic.Repositories.UsuarioRepository.CadastrarMedico(webapi.healthclinic.ViewModels.MedicoViewModel)">
             <summary>
             Cadastra um novo Usuario do tipo Médico
@@ -974,6 +1139,12 @@
             <param name="cadastrado"></param>
             <param name="UserType"></param>
             <returns>O Usuario cadastrado</returns>
+        </member>
+        <member name="M:webapi.healthclinic.Repositories.UsuarioRepository.DeletarPorID(System.Guid)">
+            <summary>
+            Busca um Usuario, comparando seu IdUsuario com o parametro id e o deleta da database
+            </summary>
+            <param name="id"></param>
         </member>
         <member name="T:webapi.healthclinic.Utils.Criptografia">
             <summary>
@@ -1028,6 +1199,31 @@
         <member name="P:webapi.healthclinic.ViewModels.ClinicaViewModel.AtendimentoFim">
             <summary>
             Horário no qual a Clinica em questao fecha diariamente
+            </summary>
+        </member>
+        <member name="T:webapi.healthclinic.ViewModels.ConsultaViewModel">
+            <summary>
+            ViewModel contendo todos os dados relevantes para cadastrar uma nova Consulta
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.ViewModels.ConsultaViewModel.DataAtendimento">
+            <summary>
+            A data de atendimento dessa consulta em questão
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.ViewModels.ConsultaViewModel.HoraAtendimento">
+            <summary>
+            Horário de atendimento da Consulta
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.ViewModels.ConsultaViewModel.IdPaciente">
+            <summary>
+            Id do Paciente que será consultado
+            </summary>
+        </member>
+        <member name="P:webapi.healthclinic.ViewModels.ConsultaViewModel.IdMedico">
+            <summary>
+            Id do Medico que será consultado
             </summary>
         </member>
         <member name="T:webapi.healthclinic.ViewModels.EspecialidadeViewModel">

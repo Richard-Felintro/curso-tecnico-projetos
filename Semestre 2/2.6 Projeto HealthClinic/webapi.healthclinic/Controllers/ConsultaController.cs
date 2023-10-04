@@ -9,36 +9,36 @@ using webapi.healthclinic.ViewModels;
 namespace webapi.healthclinic.Controllers
 {
     /// <summary>
-    /// Controller resposável pelo CRUD de especialidades
+    /// Controller resposável pelo CRUD de Consultas
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    public class EspecialidadeController : ControllerBase
+    public class ConsultaController : ControllerBase
     {
-        private EspecialidadeRepository _Repository { get; set; }
+        private ConsultaRepository _Repository { get; set; }
         /// <summary>
-        /// Declara o _Repository como uma EspecialidadeController quando o Controller é chamado
+        /// Declara o _Repository como uma ConsultaController quando o Controller é chamado
         /// </summary>
-        public EspecialidadeController() 
+        public ConsultaController()
         {
             _Repository = new();
         }
 
         /// <summary>
-        /// Cadastra a Especialidade no parametro e o adiciona ao banco de dados
+        /// Cadastra a Consulta no parametro e o adiciona ao banco de dados
         /// </summary>
         /// <param name="espi"></param>
-        /// <returns> Se a ação suceder, Status Code 201 Created com uma mensagem em referência ao sucesso da operação e a Especialidade cadastrada, se a operação falhar retorna Status Code 400 (Bad Request) com a mensagem de erro</returns>
+        /// <returns> Se a ação suceder, Status Code 201 Created com uma mensagem em referência ao sucesso da operação e a Consulta cadastrada, se a operação falhar retorna Status Code 400 (Bad Request) com a mensagem de erro</returns>
         // Exclusivamente utilizável por administradores
         [Authorize(Roles = "D172574C-87B3-4B3A-AF1A-B36DEC8DDC60")]
         [HttpPost]
-        public IActionResult Post (EspecialidadeViewModel espi)
+        public IActionResult Post(ConsultaViewModel espi)
         {
             try
             {
-                Especialidade esper = _Repository.Cadastrar(espi);
-                return Created($"Nova especialidade cadastrada com sucesso", esper);
+                Consulta esper = _Repository.Cadastrar(espi);
+                return Created($"Nova Consulta cadastrada com sucesso", esper);
             }
             catch (Exception erro)
             {
@@ -47,7 +47,7 @@ namespace webapi.healthclinic.Controllers
         }
 
         /// <summary>
-        /// Busca uma Clinica pelo seu IdClinica e a deleta da database se for encontrada
+        /// Busca uma Consulta pelo seu IdConsulta e a deleta da database se for encontrada
         /// </summary>
         /// <param name="id"></param>
         /// <returns> Se a ação suceder, Status Code 200 Ok com uma mensagem em referência, se a operação falhar retorna Status Code 404 (Not Found) com a mensagem de erro, se a ação falhar por outro erro retorna Status Code 400 com a mensagem de erro</returns>
@@ -58,13 +58,13 @@ namespace webapi.healthclinic.Controllers
         {
             try
             {
-                Especialidade espi = _Repository.BuscarPorId(id);
+                Consulta espi = _Repository.BuscarPorId(id);
                 if (espi != null)
                 {
                     _Repository.DeletarPorID(id);
-                    return Ok($"Especialidade deletada com sucesso");
+                    return Ok($"Consulta deletada com sucesso");
                 }
-                return NotFound("O Id informado não coincide com nenhuma especialidade cadastrada");
+                return NotFound("O Id informado não coincide com nenhuma Consulta cadastrada");
             }
             catch (Exception erro)
             {
@@ -73,10 +73,11 @@ namespace webapi.healthclinic.Controllers
         }
 
         /// <summary>
-        /// Transforma a tabela Especialidade em uma lista e a retorna
+        /// Transforma a tabela Consulta em uma lista e a retorna
         /// </summary>
-        /// <returns> Se suceder, retorna um Status Code 200 Ok com a lista que inclui a tabela Clinica, se a operação falhar retorna Status Code 400 (Bad Request) com a mensagem de erro </returns>
-        [Authorize]
+        /// <returns> Se suceder, retorna um Status Code 200 Ok com a lista que inclui a tabela Consulta, se a operação falhar retorna Status Code 400 (Bad Request) com a mensagem de erro </returns>
+        // Exclusivamente utilizável por administradores
+        [Authorize(Roles = "D172574C-87B3-4B3A-AF1A-B36DEC8DDC60")]
         [HttpGet]
         public IActionResult GetAll()
         {
@@ -91,44 +92,45 @@ namespace webapi.healthclinic.Controllers
         }
 
         /// <summary>
-        /// Busca uma Especialidade pelo seu IdEspecialidade
+        /// Busca uma Consulta pelo seu IdConsulta
         /// </summary>
         /// <param name="id"></param>
-        /// <returns> Se a ação suceder, Status Code 200 Ok com a Especialidade encontrada, se a operação falhar retorna Status Code 404 (Not Found) com a mensagem de erro </returns>
-        [Authorize]
+        /// <returns> Se a ação suceder, Status Code 200 Ok com a Consulta encontrada, se a operação falhar retorna Status Code 404 (Not Found) com a mensagem de erro </returns>
+        // Exclusivamente utilizável por administradores
+        [Authorize(Roles = "D172574C-87B3-4B3A-AF1A-B36DEC8DDC60")]
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
             try
             {
-                Especialidade espi = _Repository.BuscarPorId(id);
+                Consulta espi = _Repository.BuscarPorId(id);
                 return Ok(espi);
             }
             catch (Exception)
             {
-                return NotFound("O Id informado não coincide com nenhuma especialidade cadastrada");
+                return NotFound("O Id informado não coincide com nenhuma Consulta cadastrada");
             }
         }
 
         /// <summary>
-        /// Busca uma Especialidade pelo seu IdEspecialidade, se ela for encontrada a edita usando a Especialidade parametro
+        /// Busca uma Consulta pelo seu IdConsulta, se ela for encontrada a edita usando a Consulta parametro
         /// </summary>
         /// <param name="id"></param>
         /// <param name="espi"></param>
-        /// <returns> Se a ação suceder, Status Code 201 Created com a Especialidade edita e uma mensagem em referência ao sucesso da ação, se a operação falhar retorna Status Code 404 (Not Found) com sua mensagem de erro </returns>
+        /// <returns> Se a ação suceder, Status Code 201 Created com a Consulta edita e uma mensagem em referência ao sucesso da ação, se a operação falhar retorna Status Code 404 (Not Found) com sua mensagem de erro </returns>
         // Exclusivamente utilizável por administradores
         [Authorize(Roles = "D172574C-87B3-4B3A-AF1A-B36DEC8DDC60")]
         [HttpPatch("{id}")]
-        public IActionResult UpdateById(Guid id, EspecialidadeViewModel espi)
+        public IActionResult UpdateById(Guid id, ConsultaViewModel espi)
         {
             try
             {
                 if (_Repository.BuscarPorId(id) != null)
                 {
-                    Especialidade esper = _Repository.AtualizarPorId(id, espi);
-                    return Created($"Especialidade editada com sucesso", esper);
+                    Consulta esper = _Repository.AtualizarPorId(id, espi);
+                    return Created($"Consulta editada com sucesso", esper);
                 }
-                return NotFound("O Id informado não coincide com nenhuma especialidade cadastrada");
+                return NotFound("O Id informado não coincide com nenhuma Consulta cadastrada");
             }
             catch (Exception erro)
             {

@@ -1,4 +1,5 @@
 ﻿using webapi.healthclinic.Domains;
+using webapi.healthclinic.ViewModels;
 
 namespace webapi.healthclinic.Interfaces
 {
@@ -13,7 +14,7 @@ namespace webapi.healthclinic.Interfaces
         /// <param name="id"></param>
         /// <param name="atualizar"></param>
         /// <returns>O usuário atualizado</returns>
-        public Consulta AtualizarPorId(Guid id, Consulta atualizar);
+        public Consulta AtualizarPorId(Guid id, ConsultaViewModel atualizar);
 
         /// <summary>
         /// Busca uma Consulta, comparando seu IdConsulta com o parametro id
@@ -27,7 +28,7 @@ namespace webapi.healthclinic.Interfaces
         /// </summary>
         /// <param name="cadastrado"></param>
         /// <returns>O Consulta cadastrado</returns>
-        public Consulta Cadastrar(Consulta cadastrado);
+        public Consulta Cadastrar(ConsultaViewModel cadastrado);
 
         /// <summary>
         /// Busca uma Consulta, comparando seu IdConsulta com o parametro id e a deleta da database

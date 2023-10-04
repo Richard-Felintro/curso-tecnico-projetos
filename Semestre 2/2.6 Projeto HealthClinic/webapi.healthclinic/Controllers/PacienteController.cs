@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using webapi.healthclinic.Domains;
 using webapi.healthclinic.Repositories;
 using webapi.healthclinic.ViewModels;
@@ -56,8 +58,8 @@ namespace webapi.healthclinic.Controllers
         {
             try
             {
-                UsuarioR.DeletarPorID(id);
                 PacienteR.Deletar(id);
+                UsuarioR.DeletarPorID(id);
                 return Ok("Paciente deletado om sucesso");
             }
             catch (Exception erro)
@@ -85,6 +87,25 @@ namespace webapi.healthclinic.Controllers
             }
         }
 
-        [HttpGet]
+        /// <summary>
+        /// Cadastra o Paciente no parametro e o adiciona ao banco de dados
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns> Se a ação suceder, Status Code 201 Created com uma mensagem em referência ao sucesso da operação e o Paciente cadastrada, se a operação falhar retorna Status Code 400 (Bad Request) com a mensagem de erro</returns>
+        // Exclusivamente utilizável por administradores
+        [Authorize(Roles = "D172574C-87B3-4B3A-AF1A-B36DEC8DDC60")]
+        [HttpGet("{id}", Name = "BuscarPorId")]
+        public IActionResult GetPaciente(Guid id) 
+        {
+            try
+            {
+                Usuario user = UsuarioR.BuscarPorId(id);
+                return Ok(user);
+            }
+            catch (Exception erro)
+            {
+                return BadRequest(erro.Message);
+            }
+        }
     }
 }
