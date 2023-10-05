@@ -9,7 +9,7 @@ using webapi.healthclinic.ViewModels;
 namespace webapi.healthclinic.Controllers
 {
     /// <summary>
-    /// Controller responsável pela gerenciação de Usuario, Paciente & Medico
+    /// Controller responsável pela gerenciação de Usuario, Paciente e Medico
     /// </summary>
     [ApiController]
     [Route("api/[controller]")]
@@ -71,6 +71,7 @@ namespace webapi.healthclinic.Controllers
         /// <summary>
         /// Busca um Paciente e o deleta da database se for encontrado
         /// </summary>
+        /// <param name="user"></param>
         /// <param name="id"></param>
         /// <returns> Se a ação suceder, Status Code 200 Ok com uma mensagem em referência, se a operação falhar retorna Status Code 404 (Not Found) com a mensagem de erro, se a ação falhar por outro erro retorna Status Code 400 com a mensagem de erro</returns>
         [HttpPatch("{id}", Name = "AtualizarPorId")]
